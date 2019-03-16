@@ -1,0 +1,22 @@
+{
+    "name": "lx/lx-demo",
+    "description": "Lx framework service",
+    "version": "1.0.0",
+    "keywords": ["lx", "demo"],
+    "type": "library",
+    "authors": [
+        {
+            "name": "a.sedov",
+            "email": "altkkb.vds@mail.ru"
+        }
+    ],
+    "require":{
+        "lx/lx-core":"dev-master"
+    },
+    "repositories":[
+        {
+            "type":"git",
+            "url":"https://github.com/epicoon/lx-core"
+        }
+    ]    
+}
