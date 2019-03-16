@@ -1,0 +1,5 @@
+Score:
+  fields:
+    balance:     { type: integer }
+    fullMatches: { type: integer }
+    partMatches: { type: integer }

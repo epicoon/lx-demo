@@ -1,0 +1,25 @@
+<p>
+	Содержимое .conf файла для nginx
+</p>
+<div class="demo_code_back"><pre>
+	server {
+		charset utf-8;
+		client_max_body_size 128M;
+		listen 80;
+		listen [::]:80;
+
+		server_name server.name;
+		root /path/to/project;
+		index path/to/index.php;
+		
+		location / {
+			try_files $uri /path/to/index.php?$args;
+		}
+
+	    location ~ \.php$ {
+	        include fastcgi_params;
+	        fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+	        fastcgi_pass unix:/run/php/php7.1-fpm.sock;
+	    }
+	}
+</pre></div>

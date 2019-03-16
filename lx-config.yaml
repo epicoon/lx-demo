@@ -1,0 +1,20 @@
+name: lx/demo
+
+autoload:
+  psr-4:
+    lx\demo\: ''
+  classmap: [
+    exemples/02_app/07_example/backend
+    exemples/04_js/08_tools/02_synchronizer/backend
+    exemples/roulette/backend
+  ]
+
+service:
+  class: lx\demo\Service
+  router:
+    type: map
+    routes:
+      /: {module:_main}
+  modules: ''
+  models: exemples/roulette/model
+  modelCrudAdapter: null

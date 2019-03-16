@@ -1,0 +1,153 @@
+HTMP_TEST!!!
+
+
+<span class="exp">ergergre</span>
+
+
+tag spanExp =(id)=> <span class="exp" id="opa_:id">;
+tag pree = <pre class="pre">;
+
+<pree
+<spanExp(1) efef/>
+<spanExp(2) efef/>
+/>
+
+
+pree {
+	spanExp(1){efef}
+	spanExp(2){wwffwf}
+}
+
+
+(pree)
+	(spanExp{1})efef
+	(spanExp{2})wwffwf
+
+
+
+{pree}
+	{spanExp(1)}efef
+	{spanExp(2)}wwffwf
+
+
+
+pree:
+  spanExp(1): efef
+  spanExp(2): wwffwf
+
+
+
+
+
+
+<pre><div class="demo_yaml_pre demo_yaml_yaml">
+<span class="demo_yaml_comment"># Последовательности в yaml обознаяаются символом '-' и преобразуются в массивы</span>
+
+<span class="demo_yaml_comment"># Данная запись будет интерпретирована как ['string_1', 'string_2', 'string_3']</span>
+- string_1
+- string_2
+- string_3
+
+<span class="demo_yaml_comment"># Массив объектов, получим:</span>
+<span class="demo_yaml_comment"># [{field_1: 'value_1', field_2: 'value_2'}, {field_1: 'value_1', field_2: 'value_2'}]</span>
+- <span class="demo_yaml_key">field_1:</span> value_1
+  <span class="demo_yaml_key">field_2:</span> value_2
+- <span class="demo_yaml_key">field_1:</span> value_1
+  <span class="demo_yaml_key">field_2:</span> value_2
+
+<span class="demo_yaml_comment"># Хэш-таблица (или ассоциативный массив), получим:</span>
+<span class="demo_yaml_comment"># {
+#   object_1: {field_1: 'value_1', field_2: 'value_2'},
+#   object_2: {field_1: 'value_1', field_2: 'value_2'}
+# }</span>
+- <span class="demo_yaml_key">object_1:</span>
+    <span class="demo_yaml_key">field_1:</span> value_1
+    <span class="demo_yaml_key">field_2:</span> value_2
+- <span class="demo_yaml_key">object_2:</span>
+    <span class="demo_yaml_key">field_1:</span> value_1
+    <span class="demo_yaml_key">field_2:</span> value_2
+
+<span class="demo_yaml_comment"># Альтернативная запись предыдущего примера</span>
+- <span class="demo_yaml_key">object_1:</span> { <span class="demo_yaml_key">field_1:</span> value_1, <span class="demo_yaml_key">field_2:</span> value_2 }
+- <span class="demo_yaml_key">object_2:</span> { <span class="demo_yaml_key">field_1:</span> value_1, <span class="demo_yaml_key">field_2:</span> value_2 }
+
+<span class="demo_yaml_comment"># В двух последних примерах использование перечислений избыточно, т.к.
+# без символа '-' будет аналогичный результат</span>
+<span class="demo_yaml_comment"># Однако для улучшения читаемости в определенных случаях такая запись может быть полезна</span>
+</div></pre>
+
+
+
+tag preYaml = <pre><div class="demo_yaml_pre demo_yaml_yaml">;
+tag yamlComment = <span class="demo_yaml_comment">;
+tag yamlKey = <span class="demo_yaml_comment">;
+tag exp(id) = <span id="eee_:id">;
+
+mixin printList(list) {
+	each (key:name in list) {
+		if (key is comment) yamlComment:{name};
+		
+		yamlKey:{field1} name.val2
+		yamlKey:{field2}
+		each (i:val in name.field2) {
+			exp(${val_i}):{val}
+		}
+	}
+};
+
+data list = <yaml>{
+	comment: '# comm'
+	name1:
+	  field1: val2,
+	  field2:
+	    - val21
+	    - val22
+	name2:
+	  field1: val2,
+	  field2:
+	    - val21
+	    - val22
+};
+
+printList(list);
+
+
+
+preYaml: {
+yamlComment:{# Последовательности в yaml обозначаются символом '-' и преобразуются в массивы}
+
+yamlComment:{# Данная запись будет интерпретирована как ['string_1', 'string_2', 'string_3']}
+- string_1
+- string_2
+- string_3
+
+yamlComment:{# Массив объектов, получим:}
+yamlComment:{# [{field_1: 'value_1', field_2: 'value_2'}, {field_1: 'value_1', field_2: 'value_2'}]}
+- yamlKey:{field_1:} value_1
+  yamlKey:{field_2:} value_2
+- yamlKey:{field_1:} value_1
+  yamlKey:{field_2:} value_2
+
+yamlComment:{# Хэш-таблица (или ассоциативный массив), получим:}
+yamlComment:{# {
+#   object_1: {field_1: 'value_1', field_2: 'value_2'},
+#   object_2: {field_1: 'value_1', field_2: 'value_2'}
+# }}
+- yamlKey:{object_1:}
+    yamlKey:{field_1:} value_1
+    yamlKey:{field_2:} value_2
+- yamlKey:{object_2:}
+    yamlKey:{field_1:} value_1
+    yamlKey:{field_2:} value_2
+
+yamlComment:{# Альтернативная запись предыдущего примера}
+- yamlKey:{object_1:} { yamlKey:{field_1:} value_1, yamlKey:{field_2:} value_2 }
+- yamlKey:{object_2:} { yamlKey:{field_1:} value_1, yamlKey:{field_2:} value_2 }
+
+yamlComment:{# В двух последних примерах использование перечислений избыточно, т.к.
+# без символа '-' будет аналогичный результат}
+yamlComment:{# Однако для улучшения читаемости в определенных случаях такая запись может быть полезна}
+}
+
+
+

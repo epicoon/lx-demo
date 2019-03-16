@@ -1,0 +1,18 @@
+.demo_yaml_yaml {
+	color: yellow !important;
+}
+
+.demo_yaml_key {
+	font-weight: bold;
+	color: red;
+}
+
+.demo_yaml_tpl {
+	font-style: italic;
+	color: violet;
+}
+
+.demo_yaml_link {
+	font-style: italic;
+	color: lightgreen;
+}

@@ -1,0 +1,61 @@
+
+.exp {
+	color: white;
+	background-color: green;
+	padding: 10px;
+	font-weight: bold;
+}
+
+.pre {
+	border: solid black 2px;
+}
+
+
+
+.demo_yaml_main {
+	line-height: 1.33;
+}
+
+.demo_yaml_c {
+	color: blue;
+	text-decoration: underline;
+	cursor: pointer;
+}
+.demo_yaml_c:hover {
+	color: darkviolet;
+	text-decoration: none;
+}
+
+.demo_yaml_pre {
+	margin-left: 5%;
+	margin-right: 5%;
+	padding: 15px;
+	border-radius: 20px;
+	background-color: #272822;
+	color: white;
+	font-family: Courier; /*Verdana;*/
+}
+
+.demo_yaml_yaml {
+	color: yellow;
+}
+
+.demo_yaml_key {
+	font-weight: bold;
+	color: red;
+}
+
+.demo_yaml_tpl {
+	font-style: italic;
+	color: violet;
+}
+
+.demo_yaml_link {
+	font-style: italic;
+	color: lightgreen;
+}
+
+.demo_yaml_comment {	
+  color: #8D8872;
+}
+

@@ -1,0 +1,256 @@
+<p>
+	[[:
+	<ru>
+		Пришло время разобрать основные значения, задаваемые в конфигурации приложения.
+	</ru>
+	<en>
+		It's time to parse the basic values that are set in the application configuration.
+	</en>
+	:]]
+</p>
+
+<h2>[[:<ru>Содержание</ru><en>Contents</en>:]]</h2>
+<ul>
+	<li class="demo_nav" lx-data="pointTo:demo_app_config_01">[[:<ru>Пример конфигурации</ru><en>Configuration exemple</en>:]]</li>
+
+<!--
+	<li class="demo_nav" lx-data="pointTo:demo_app_config_02">[[:<ru>Режим работы приложения</ru><en>Application mode</en>:]]</li>
+-->
+	<li class="demo_nav" lx-data="pointTo:demo_app_config_03">[[:<ru>Алиасы приложения</ru><en>Application aliases</en>:]]</li>
+	<li class="demo_nav" lx-data="pointTo:demo_app_config_04">[[:<ru>Доступ к корневым модулям</ru><en>Root modules routing</en>:]]</li>
+	<li class="demo_nav" lx-data="pointTo:demo_app_config_05">[[:<ru>Виджеты клиентского кода</ru><en>Client-code widgets</en>:]]</li>
+	<li class="demo_nav" lx-data="pointTo:demo_app_config_06">[[:<ru>Глобальный js-код</ru><en>Global js-code</en>:]]</li>
+</ul>
+
+
+
+<h2 id="demo_app_config_01"></h2>
+<p>
+	[[:
+	<ru>
+		Конфигурация всего приложения, находится в файле 'your/site/path/lx/config/main.php'. Может содержать примерно такой код:
+	</ru>
+	<en>
+		Application configuration is located in file 'your/site/path/lx/config/main.php'. It may contain about this code
+	</en>
+	:]]
+</p>
+<div class="demo_code_back code"><pre>
+	&lt;?php
+
+	return [
+		<!--// [[:<ru>Произвольное текстовое значение, характеризующее режим работы приложения</ru><en>Arbitrary text value characterizing the mode of the application</en>:]]
+		'mode' => 'dev',-->
+		// [[:<ru>Алиасы уровня приложения</ru><en>Application level aliases</en>:]]
+		'aliases' => [
+			'module' => '@lx/modules',
+			'toolModule' => '@lx/tools',
+
+			'tech' => '@module/tech'
+		],
+
+
+		// [[:<ru>Каталог с корневыми-локализованными модулями</ru><en>Root-localized modules directory</en>:]]
+		'modulesDirectory' => '@module',
+		// [[:<ru>Домашний модуль (путь строится относительно 'modulesDirectory', но можно использовать алиасы)</ru><en>Home module (path will be build from 'modulesDirectory' but you can use aliases)</en>:]]
+		'homeModule' => 'home',
+
+		// [[:<ru>Пути для корневых-роутируемых модулей</ru><en>Root-routable modules pathes</en>:]]
+		'modules' => [
+			'tool' => '@tech/tool',
+			'test' => '@tech/test',
+		],
+
+
+		// [[:<ru>Массив для описания расположения пользовательских виджетов</ru><en>Client-code widgets localization array</en>:]]
+		// [[:<ru>- ключ - namespace для виджетов</ru><en>- key - widgets namespace</en>:]]
+		// [[:<ru>- значение - путь к каталогу с этой группой виджетов</ru><en>- value - path to widgets directory</en>:]]
+		'widgets' => [
+			'widgets' => '@lx/widgets',
+		],
+
+		// [[:<ru>Глобальный js-код, выполняемый до разворачивания корневого модуля</ru><en>Global js-code executable before module deploy</en>:]]
+		'jsBootstrap' => '@web/js/_bootstrap.js',
+		// [[:<ru>Глобальный js-код, выполняемый после разворачивания корневого модуля</ru><en>Global js-code executable after module deploy</en>:]]
+		'jsMain' => '@web/js/_main.js',
+	];
+</pre></div>
+<p>
+	[[:
+	<ru>
+		Данной конфигурации будет соответствовать следующая структура директорий:
+	</ru>
+	<en>
+		This configuration will correspond to the following directory structure
+	</en>
+	:]]
+</p>
+<div class="demo_code_back"><pre>
+	modules
+		home
+		tech
+			tool
+			test
+	tools
+		someToolModule1
+		someToolModule2
+		...
+	widgets
+		clientWidget1
+		clientWidget2
+		...
+	web
+		js
+			_bootstrap.js
+			_main.js
+</pre></div>
+
+
+<!--
+<h2 id="demo_app_config_02"></h2>
+- \lx::isMode($mode);
+- #mode-case: mode;
+	js-code
+  #mode-end;
+-->
+
+
+<h2 id="demo_app_config_03"></h2>
+<p>[[:
+	<ru>
+		Алиасы - сокращения для часто используемых путей. Алиасы хранятся в компоненте \lx::$conductor, в том числе важные для платформы, не подлежащие изменению.
+		Пример использования компонента:
+	</ru>
+	<en>
+		Aliases are abbreviations for commonly used paths. Aliases are stored in the \lx::$conductor component, including those important for the platform that cannot be changed. Example of using the component:
+	</en>
+:]]</p>
+<div class="demo_code_back code"><pre>
+	// [[::<ru>Данный алиас зашит в компонент</ru><en>This alias is defined by the component</en>:]]
+	lx::$conductor->lx
+	// [[::<ru>Вернет путь:</ru><en>Will return path:</en>:]] "path/to/your/site/lx"
+
+	// [[::<ru>Данный алиас определен нами в конфигурации</ru><en>This alias is defined by us in configuration</en>:]]
+	lx::$conductor->tech
+	// [[::<ru>Вернет путь:</ru><en>Will return path:</en>:]] "path/to/your/site/lx/modules/tech"
+
+
+	// [[::<ru>Также можно получить значения алиасов так, как они сконфигурированы,</ru><en>We can also get the value of an alias according to its definition</en>:]]
+	// [[::<ru>при помощи метода</ru><en>with using method</en>:]] getAlias():
+
+	// [[::<ru>Для стандартного алиаса возвращается полный путь</ru><en>For a standard alias, the full path will be returned</en>:]]
+	lx::$conductor->getAlias('@lx')
+	// [[::<ru>Вернет:</ru><en>like this:</en>:]] "path/to/your/site/lx"
+
+	// [[::<ru>Для установленноого нами</ru><en>For defined by us</en>:]]
+	lx::$conductor->getAlias('@tech')
+	// [[::<ru>будет возвращено заначение, как мы его установили:</ru><en>the value will be returned as we set it</en>:]] "@module/tech"
+</pre></div>
+<p>[[:
+	<ru>
+		Подробнее о компоненте \lx::$conductor написано в соответствующей статье !!!ссылка!!!.
+	</ru>
+	<en>
+		More information about the \lx::$conductor component you can read in the corresponding article !!!link!!!.
+	</en>
+:]]</p>
+
+
+
+<h2 id="demo_app_config_04"></h2>
+<p>[[:
+	<ru>
+		Корневые модули это такие модули, доступ к которым осуществляется непосредственно из приложения. Иными словами, эти модули не вложены в другие модули.
+	</ru>
+	<en>
+		Root modules are those modules that are accessed directly from the application. In other words, these modules are not nested in other modules.
+	</en>
+:]]</p>
+
+<p>[[:
+	<ru>
+		Для осуществления доступа к модулю в адресной строке браузера нужно использовать его имя (н-р moduleNmae): "http(s)://your.site/moduleName"
+	</ru>
+	<en>
+		To access the module in the address bar of the browser, you need to use its name (for example, moduleNmae): "http (s): //your.site/moduleName"
+	</en>
+:]]</p>
+
+<p>[[:
+	<ru>
+		В зависимости от механизма загрузки, модули делятся на локализованные и роутируемые.
+	</ru>
+	<en>
+		Depending on the loading mechanism, the modules are divided into localized and routable.
+	</en>
+:]]</p>
+
+<p>[[:
+	<ru>
+		Локализованные модули находятся в специальном каталоге, который определяется в конфигурации приложения.
+		Такой модуль в качестве имени использует название своего каталога,
+		соответственно по URL "http(s)://your.site/moduleName" для загрузки модуля будет искаться директория с именем "moduleName", которая в свою очередь должна располагаться в каталоге, определенном в конфигурации приложения при помощи ключа 'modulesDirectory'.
+	</ru>
+	<en>
+		Localized modules are located in a special directory that is defined in the application configuration.
+		This module uses the name of its directory as self name,
+		accordingly, for URL "http(s)://your.site/moduleName" it will load the directory with the name "moduleName", which in turn must be located in the directory defined in the application configuration by the 'modulesDirectory' key.
+	</en>
+:]]</p>
+
+<p>[[:
+	<ru>
+		Роутируемые модули не имеют прямой привязки своего имени к названиям каталогов. Для загрузки таких модулей в конфигурации приложения есть ключ 'modules', которому соответствует массив. Массив состоит из пар ключ-значение, где ключ - имя модуля, а значение - путь к модулю, который может быть задан относительно корня сайта (если начинается с "/"), либо при помощи алиаса.
+		При наложении одной логики на другую, то есть если в массиве 'modules' есть ключ 'someModule' и в каталоге 'modulesDirectory' есть каталог 'someModule', роутируемые модули обладают приоритетом по отношению к локализованным.
+	</ru>
+	<en>
+		Routable modules do not directly bind their name to directory names. To load such modules in the application configuration is the key 'modules', which corresponds to an array. The array consists of key-value pairs, where the key is the name of the module, and the value is the path to the module, which can be specified relative to the site root (if it starts with "/"), or by using an alias.
+		When applying one logic to another, for example if there is a key 'someModule' in the 'modules' array, and in the 'modulesDirectory' there is a directory 'someModule', the routable modules have priority over localized ones.
+	</en>
+:]]</p>
+
+<p>[[:
+	<ru>
+		Особое место занимает домашний модуль - его имя "/", путь к каталогу домашнего модуля можно задать в конфигурации приложения при помощи ключа 'homeModule'. Если путь начинается с "/", то он будет построен от корня сайта. Также можно для задания пути к домашнему модулю использовать алиасы. Если не используется ни абсолюлтный путь, ни алиасы, поиск пути домашнего модуля пойдет по логике локализованного модуля, т.е. относительно каталога, зананного ключом 'modulesDirectory'.
+	</ru>
+	<en>
+	</en>
+:]]</p>
+
+
+
+<h2 id="demo_app_config_05"></h2>
+<p>[[:
+	<ru>
+		Виджеты это фрагменты графического интерфейса, решающие универсальные задачи. В платформу встроен набор виджетов. Но если их недостаточно, есть возможность создавать свои. Подробно как это делается описано в соответствующей статье !!!ссылка!!!. Что касается текущей темы - достаточно запомнить, что в конфигурации приложения при помощи ключа 'widgets' задаются пространства имен виджетов клиентского кода.
+	</ru>
+	<en>
+		Widgets are fragments of a graphical interface that solve universal tasks. The platform has a built-in set of widgets. But if they are not enough, you can create your own. In detail how this is done is described in the corresponding article !!!link!!!. As for the current theme, it’s enough to understand that in the application configuration key 'widgets' is specified the namespaces of the client widgets code.
+	</en>
+:]]</p>
+
+
+
+<h2 id="demo_app_config_06"></h2>
+<p>[[:
+	<ru>
+		В конфигурации приложения есть два ключа, определяющие входные точки в исполняемый на клиенте js-код.
+		Ключ 'jsBootstrap' определяет путь к js-файлу, который будет выполнен до разворачивания корневого модуля.
+		Ключ 'jsMain' определяет путь к js-файлу, который будет выполнен после разворачивания корневого модуля.
+	</ru>
+	<en>
+		In the application configuration, there are two keys that define the input points to the js code executed on the client.
+		The 'jsBootstrap' key determines path to the js-file that will be executed before the root module will deployed.
+		The 'jsMain' key determines path to the js-file that will be executed after the root module will deployed.
+	</en>
+:]]</p>
+<p>[[:
+	<ru>
+		Подобный код может быть полезен, если нужно определить сущности, не привязанные к конкретным модулям, которые можно будет использовать в любом месте приложения.
+		Однако философия модульной архиректуры призывает не злоупотреблять возможностью писать глобальный js-код.
+	</ru>
+	<en>
+		Such code can be useful if you need to identify entities that are not tied to specific modules that can be used anywhere in the application.
+		However, the philosophy of the modular architecture calls not to abuse the ability to write global js-code.
+	</en>
+:]]</p>

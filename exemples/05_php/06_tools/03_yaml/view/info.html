@@ -1,0 +1,342 @@
+<p>
+Формат yaml лаконичен и тем удобен для описания различных конфигураций. 
+В рамках данной платформы все конфигурационные файлы могут быть представлены в виде yaml-файлов.
+Помимо этого существует механизм быстрого включения в js-код структур данных, описанных в yaml-файлах.
+</p>
+
+
+
+<h2>Содержание</h2>
+<ul>
+	<li class="demo_nav" lx-data="pointTo:demo_yaml_c0_">Применение yaml для создания конфигураций модулей</li>
+	<li class="demo_nav" lx-data="pointTo:demo_yaml_c1_">Загрузка yaml-конфигураций в php-коде</li>
+	<li class="demo_nav" lx-data="pointTo:demo_yaml_c2_">Использование yaml-файлов в js-коде</li>
+	<li class="demo_nav" lx-data="pointTo:demo_yaml_c3_">Комбинирование yaml-файлов</li>
+	<li class="demo_nav" lx-data="pointTo:demo_yaml_c4_">Особенности yaml-комментариев</li>
+	<li class="demo_nav" lx-data="pointTo:demo_yaml_c5_">Памятка о синтаксисе yaml</li>
+		<ul>
+			<li class="demo_nav" lx-data="pointTo:demo_yaml_c50">Объявление простых структур данных</li>
+			<li class="demo_nav" lx-data="pointTo:demo_yaml_c51">Последовательности</li>
+			<li class="demo_nav" lx-data="pointTo:demo_yaml_c52">Объявление массивов или матриц</li>
+			<li class="demo_nav" lx-data="pointTo:demo_yaml_c53">Многострочные строки</li>
+			<li class="demo_nav" lx-data="pointTo:demo_yaml_c54">Интерпретация числа как строки</li>
+			<li class="demo_nav" lx-data="pointTo:demo_yaml_c55">Механизм подстановок и "наследование"</li>
+		</ul>
+	</li>
+</ul>
+
+
+
+<h2 id="demo_yaml_c0_"></h2>
+<p>
+Пример конфигурации модуля, определенной в php-файле
+</p>
+<div class="demo_code_back"><pre>
+	&lt;?php
+	<span class="demo_yaml_key">return</span> [
+		'respondents' <span class="demo_yaml_key">=></span> 'respDirectory',
+		'view' <span class="demo_yaml_key">=></span> 'viewDirectory',
+		'viewIndex' <span class="demo_yaml_key">=></span> 'index.php',
+
+		'images' <span class="demo_yaml_key">=></span> '{module: route/to/other/module}',
+		'css' <span class="demo_yaml_key">=></span> 'cssDirectory',
+
+		'modulesDirectory' <span class="demo_yaml_key">=></span> 'modules',
+		'modules' <span class="demo_yaml_key">=></span> [
+			'innerModule0' <span class="demo_yaml_key">=></span> 'route/to/module0',
+			'innerModule1' <span class="demo_yaml_key">=></span> 'route/to/module1',
+			'innerModule2' <span class="demo_yaml_key">=></span> 'route/to/module2',
+		],
+
+		'db' <span class="demo_yaml_key">=></span> [
+			'hostname' <span class="demo_yaml_key">=></span> 'localhost',
+			'username' <span class="demo_yaml_key">=></span> 'name',
+			'password' <span class="demo_yaml_key">=></span> 'psw',
+			'dbName' <span class="demo_yaml_key">=></span> 'mydb'
+		],
+	];
+</pre></div>
+
+<p>
+Эта же конфигурация в yaml-файле
+</p>
+<div class="demo_code_back demo_yaml_yaml"><pre>
+	<span class="demo_yaml_key">respondents:</span> respDirectory
+	<span class="demo_yaml_key">view:</span> viewDirectory
+	<span class="demo_yaml_key">viewIndex:</span> index.php
+
+	<span class="demo_yaml_key">images:</span> '{module: route/to/other/module}'
+	<span class="demo_yaml_key">css:</span> cssDirectory
+
+	<span class="demo_yaml_key">modulesDirectory:</span> modules
+	<span class="demo_yaml_key">modules:</span>
+		<span class="demo_yaml_key">innerModule0:</span> route/to/module0
+		<span class="demo_yaml_key">innerModule1:</span> route/to/module1
+		<span class="demo_yaml_key">innerModule2:</span> route/to/module2
+
+	<span class="demo_yaml_key">db:</span>
+		<span class="demo_yaml_key">hostname:</span> localhost
+		<span class="demo_yaml_key">username:</span> name
+		<span class="demo_yaml_key">password:</span> psw
+		<span class="demo_yaml_key">dbName:</span> mydb
+</pre></div>
+
+
+
+<h2 id="demo_yaml_c1_">Загрузка yaml-конфигураций в php-коде</h2>
+<p>
+Конфигурационные файлы модулей будут найдены и применены автоматически. Но можно создавать всевозможные конфигурации и просто описания структур данных для целей рабработки. Есть следующие пути быстро загрузить такие структуры данных в php-коде:
+</p>
+<div class="demo_code_back"><pre>
+	<span class="demo_code_comment">// Класс lx\YamlFile возвращает свои данные сразу в виде ассоциативного php-массива</span>
+	$yamlFile <span class="demo_yaml_key">=</span> new <span class="demo_yaml_link">lx</span>\YamlFile($filePath);
+	$data <span class="demo_yaml_key">=</span> $yamlFile<span class="demo_yaml_key">-></span>get();
+
+	<span class="demo_code_comment">// Можно работать с yaml-файлом просто как с текстовым файлом</span>
+	$file <span class="demo_yaml_key">=</span> new <span class="demo_yaml_link">lx</span>\File($filePath);
+	<span class="demo_code_comment">// В этом случае мы получаем текст</span>
+	$fileContent <span class="demo_yaml_key">=</span> $file<span class="demo_yaml_key">-></span>get();
+	<span class="demo_code_comment">// Вторым параметром можно передать путь к каталогу, относительно которого 
+	// будут подключаться ссылки на другие файлы</span>
+	$yamlParser <span class="demo_yaml_key">= new</span> <span class="demo_yaml_link">lx</span>\Yaml($fileContent <span class="demo_code_comment">/*, $referenceRootPath*/</span>);
+	<span class="demo_code_comment">// Можем распарсить его в ассоциативный php-массив</span>
+	$data <span class="demo_yaml_key">=</span> $yamlParser<span class="demo_yaml_key">-></span>parse();
+	<span class="demo_code_comment">// Можем распарсить в json-строку</span>
+	$jsonData <span class="demo_yaml_key">=</span> $yamlParser<span class="demo_yaml_key">-></span>parseToJson();
+	<span class="demo_code_comment">// Можем распарсить в строку, которую можно напрямую конкатенировать в текст js-кода</span>
+	$jsData <span class="demo_yaml_key">=</span> $yamlParser<span class="demo_yaml_key">-></span>parseToJs();
+</pre></div>
+
+
+
+<h2 id="demo_yaml_c2_">Использование yaml-файлов в js-коде</h2>
+<p>
+В рамках платформы существует возможность включить структуры данных, описанные в yaml-файле напрямую в js-код. Для этого есть директива js-компилятора: #lx:yaml<br>
+</p>
+<div class="demo_code_back"><pre>
+	<span class="demo_code_comment">// Так выглядит вызов директив в js-коде. После директивы указывается путь к yaml-файлу</span>
+	<span class="demo_code_comment">// Если Ваш yaml-файл имеет одно из расширений 'yaml' или 'yml' - указывать 
+	// расширение в пути не обязательно</span>
+
+	<span class="demo_code_comment">// В данном случае путь относительно текущего js-файла, или, если такого нет -
+	// текущего модуля</span>
+	<span class="demo_yaml_link">let</span> data0 <span class="demo_yaml_key">=</span> #lx:yaml relative/path/to/yamlFile;
+
+	<span class="demo_code_comment">// Если начинается с '/' - путь относительно корня сайта</span>
+	<span class="demo_yaml_link">let</span> data1 <span class="demo_yaml_key">=</span> #lx:yaml /absolute/path/to/yamlFile;
+</pre></div>
+
+<p>
+Допустим, у нас есть такой yaml-файл по адресу "relative/path/to/yamlFile" относительно нашего js-файла:
+</p>
+<div class="demo_code_back demo_yaml_yaml"><pre>
+	<span class="demo_yaml_key">someData:</span>
+	  <span class="demo_yaml_key">field1:</span> value1
+	  <span class="demo_yaml_key">field2:</span> value2
+	<span class="demo_yaml_key">someArray:</span>
+	  - elem0
+	  - elem1
+</pre></div>
+
+<p>
+При этом по адресу "/absolute/path/to/yamlFile" относительно корня сайта файла нет. Тогда js-код, еще до начала исполнения (в результате работы js-компилятора) 
+примет следующий вид:
+</p>
+<div class="demo_code_back"><pre>
+	<span class="demo_code_comment">// Директива заменилась на данные, описанные в yaml-файле</span>
+	<span class="demo_yaml_link">let</span> data0 <span class="demo_yaml_key">=</span> {someData: {field1: 'value1', field2: 'value2'}, someArray: [elem0, elem1]};
+
+	<span class="demo_code_comment">// Файл не был найден</span>
+	<span class="demo_yaml_link">let</span> data1 <span class="demo_yaml_key">=</span> <span class="demo_yaml_tpl">null</span>;
+</pre></div>
+
+
+
+<h2 id="demo_yaml_c3_">Комбинирование yaml-файлов</h2>
+В рамках платформы поддерживается протокол включения одних yaml-файлов в другие. Для этого существует директива '^ref'. Пример:
+<div class="demo_code_back demo_yaml_yaml"><pre>
+	<span class="demo_code_comment"># Если путь начинается на '/' - файл будет искаться от корня сайта</span>
+	<span class="demo_yaml_key">absoluteReference:</span> ^ref /path/from/site/root
+
+	<span class="demo_code_comment"># В данном случае парсер должен знать путь к папке, относительно которой искать файл
+	# При этом lx\YamlFile, используя парсер, сам сообщает ему эту информацию</span>
+	<span class="demo_yaml_key">relativeReference:</span> ^ref path/to/file
+
+	<span class="demo_code_comment"># Включение данных из другого файла с наследованием</span>
+	<span class="demo_yaml_key">referenceWithRedefinition:</span>
+	  <span class="demo_yaml_key">&lt;&lt;:</span> ^ref path/to/file
+	  <span class="demo_code_comment"># Если такое поле есть в структуре, на которую ссылаемся - оно будет переопределено</span>
+	  <span class="demo_yaml_key">redefinedField:</span> value1
+	  <span class="demo_code_comment"># Можно добавить дополнительные поля</span>
+	  <span class="demo_yaml_key">addedField:</span> value2  
+</pre></div>
+
+
+
+<h2 id="demo_yaml_c4_">Особенности yaml-комментариев</h2>
+<div class="demo_code_back demo_yaml_yaml"><pre>
+	<span class="demo_code_comment"># Пример обычного yaml-комментария: начинается с октоторпа и продолжается до конца строки</span>
+	<span class="demo_code_comment"># Таким образом в yaml есть только однострочные комментарии</span>
+
+	<span class="demo_code_comment">
+	###
+	Однако парсер, встроенный в данную платформу умеет интерпретировать многострочные
+	комментарии, ограниченные сверху и снизу тремя октоторпами.
+
+	Это удобно например для того, чтобы временно закомментировать часть конфигурации в
+	процессе разработки.
+
+	Еще это удобно и тем, что если приходится комментировать/раскомментировать много раз,
+	то для раскомментирования достаточно удалить одну из троек (верхнюю или нижнюю), или
+	даже просто один октоторп из трех, т.к. другая тройка будет интерпретирована просто как
+	однострочный комментарий.
+	###
+	</span>
+
+	<span class="demo_code_comment">
+	###
+	#
+	С этим локальным расширением связано две проблемы:
+	1. Использование многострочных комментариев на постоянной основе сделает содержимое
+	yaml-файла непереносимым в другие среды.
+	2. Имеющиеся IDE и редакторы не будут подсвечивать такой многострочный комментарий цветом
+	именно комментария.
+	Советы для решения этих проблем:
+	1. Используйте эту возможность только для решения проблем в рамках платформы, временно, во
+	время разработки (или не используйте вообще:)).
+	2. Оформляйте комментарий например так, как сделано здесь, чтобы однозначно определить
+	начало и конец комментария.
+	#
+	###
+	</span>
+</pre></div>
+
+
+
+<h2 id="demo_yaml_c5_">Памятка о синтаксисе yaml</h2>
+
+<h4 id="demo_yaml_c50">Объявление простых структур данных</h4>
+<div class="demo_code_back demo_yaml_yaml"><pre>
+	<span class="demo_code_comment"># "Классическая" для yaml запись</span>
+	<span class="demo_yaml_key">object:</span>
+	  <span class="demo_yaml_key">field_1:</span> value_1
+	  <span class="demo_yaml_key">field_2:</span> value_2
+
+	<span class="demo_code_comment"># yaml, как надмножество json - альтернативная запись предыдущего примера</span>
+	<span class="demo_yaml_key">object:</span> { <span class="demo_yaml_key">field_1:</span> value_1, <span class="demo_yaml_key">field_2:</span> value_2 }
+</pre></div>
+
+<h4 id="demo_yaml_c51">Последовательности</h4>
+<div class="demo_code_back demo_yaml_yaml"><pre>
+	<span class="demo_code_comment"># Последовательности в yaml обознаяаются символом '-' и преобразуются в массивы</span>
+
+	<span class="demo_code_comment"># Данная запись будет интерпретирована как ['string_1', 'string_2', 'string_3']</span>
+	- string_1
+	- string_2
+	- string_3
+
+	<span class="demo_code_comment"># Массив объектов, получим:</span>
+	<span class="demo_code_comment"># [{field_1: 'value_1', field_2: 'value_2'}, {field_1: 'value_1', field_2: 'value_2'}]</span>
+	- <span class="demo_yaml_key">field_1:</span> value_1
+	  <span class="demo_yaml_key">field_2:</span> value_2
+	- <span class="demo_yaml_key">field_1:</span> value_1
+	  <span class="demo_yaml_key">field_2:</span> value_2
+
+	<span class="demo_code_comment"># Хэш-таблица (или ассоциативный массив), получим:</span>
+	<span class="demo_code_comment"># {
+	#   object_1: {field_1: 'value_1', field_2: 'value_2'},
+	#   object_2: {field_1: 'value_1', field_2: 'value_2'}
+	# }</span>
+	- <span class="demo_yaml_key">object_1:</span>
+	    <span class="demo_yaml_key">field_1:</span> value_1
+	    <span class="demo_yaml_key">field_2:</span> value_2
+	- <span class="demo_yaml_key">object_2:</span>
+	    <span class="demo_yaml_key">field_1:</span> value_1
+	    <span class="demo_yaml_key">field_2:</span> value_2
+
+	<span class="demo_code_comment"># Альтернативная запись предыдущего примера</span>
+	- <span class="demo_yaml_key">object_1:</span> { <span class="demo_yaml_key">field_1:</span> value_1, <span class="demo_yaml_key">field_2:</span> value_2 }
+	- <span class="demo_yaml_key">object_2:</span> { <span class="demo_yaml_key">field_1:</span> value_1, <span class="demo_yaml_key">field_2:</span> value_2 }
+
+	<span class="demo_code_comment"># В двух последних примерах использование перечислений избыточно, т.к.
+	# без символа '-' будет аналогичный результат</span>
+	<span class="demo_code_comment"># Однако для улучшения читаемости в определенных случаях такая запись может быть полезна</span>
+</pre></div>
+
+<h4 id="demo_yaml_c52">Объявление массивов или матриц</h4>
+<div class="demo_code_back demo_yaml_yaml"><pre>
+	<span class="demo_code_comment"># Данная запись будет преобразована в соответствующий массив, a, b и c это строки</span>
+	<span class="demo_yaml_key">array:</span> [ [a, b, c], [1, 2, 3] ]
+
+	<span class="demo_code_comment"># Вариант задания двумерного массива, или матрицы</span>
+	<span class="demo_yaml_key">matrix:</span> [
+	  [1, 0, 0]
+	  [0, 1, 0]
+	  [0, 0, 1]
+	]
+
+	<span class="demo_code_comment"># Ещё один способ задать матрицу - аналогичен предыдущему</span>
+	<span class="demo_yaml_key">matrix_2:</span>
+	  - [1, 0, 0]
+	  - [0, 1, 0]
+	  - [0, 0, 1]
+
+	<span class="demo_code_comment"># Можно как угодно сочетать и вкладывать элементы</span>
+	<span class="demo_yaml_key">mixed_array:</span>
+	  - [1, [10, 11, 12], 0]
+	  - [0, {<span class="demo_yaml_key">a:</span> 100, <span class="demo_yaml_key">b:</span> 200}, 0]
+	  - [0, 0, 1]
+</pre></div>
+
+<h4 id="demo_yaml_c53">Многострочные строки</h4>
+<div class="demo_code_back demo_yaml_yaml"><pre>
+	<span class="demo_code_comment"># С использованием символа '|' можно сохранить в строке переносы так, как они
+	# заданы в yaml-файле</span>
+	<span class="demo_yaml_key">multiline_with_wrap:</span> |
+	  line #0
+	  line #1
+	  line #2
+
+	<span class="demo_code_comment"># В данном случае просто удобная многострочная запись в yaml-файле для одностночной строки</span>
+	<span class="demo_code_comment"># Места, где в yaml-варианте стоят переносы, будут "сшиты" пробелами</span>
+	<span class="demo_yaml_key">multiline_without_wrap:</span> >
+	  beginning of line
+	  middle of line
+	  ending of line
+
+	<span class="demo_code_comment"># Вариант предыдущего примера, но строка начинается сразу после ключа. В этом 
+	# случае не нужен символ '&gt;'</span>
+	<span class="demo_yaml_key">multiline_without_wrap_2:</span> beginning of line
+	  middle of line
+	  ending of line
+</pre></div>
+
+<h4 id="demo_yaml_c54">Директива интерпретировать число как строку</h4>
+<div class="demo_code_back demo_yaml_yaml"><pre>
+	<span class="demo_code_comment"># В данном случае поле number будет инициализировано чистом 100</span>
+	<span class="demo_yaml_key">number:</span> 100
+	<span class="demo_code_comment"># С использованием директивы '!!str' значением поля number_as_string будет строка "100"</span>
+	<span class="demo_yaml_key">number_as_string:</span> !!str 100
+</pre></div>
+
+<h4 id="demo_yaml_c55">Механизм подстановок и "наследование"</h4>
+<div class="demo_code_back demo_yaml_yaml"><pre>
+	<span class="demo_code_comment"># Создается структура {some_data: {a: 1, b: 2}}</span>
+	<span class="demo_code_comment"># Используя амперсанд создается ссылка на эту структуру с именем 'parent_template'</span>
+	<span class="demo_yaml_key">some_data:</span> <span class="demo_yaml_tpl">&amp;parent_template</span>
+	  <span class="demo_yaml_key">a:</span> 1
+	  <span class="demo_yaml_key">b:</span> 2
+
+	<span class="demo_code_comment"># Полностью копирует структуру, получим {copy: {a: 1, b: 2}}</span>
+	<span class="demo_yaml_key">copy:</span> <span class="demo_yaml_link">*parent_template</span>
+
+	<span class="demo_code_comment"># Наследует структуру по ссылке &amp;parent_template, переопределяя и доопределяя поля</span>
+	<span class="demo_code_comment"># Получим структуру {inherited: {a: 1, b: 11, c: 111}}</span>
+	<span class="demo_yaml_key">inherited:</span>
+	  <span class="demo_yaml_key">&lt;&lt;:</span> <span class="demo_yaml_link">*parent_template</span>
+	  <span class="demo_yaml_key">b:</span> 11
+	  <span class="demo_yaml_key">c:</span> 111
+
+	<span class="demo_code_comment"># Другой вариант записи предыдущего примера</span>
+	<span class="demo_yaml_key">inherited_2:</span> {<span class="demo_yaml_key">&lt;&lt;:</span> <span class="demo_yaml_link">*parent_template</span>, <span class="demo_yaml_key">b:</span> 11, <span class="demo_yaml_key">c:</span> 111}
+</pre></div>

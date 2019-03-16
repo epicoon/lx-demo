@@ -1,0 +1,107 @@
+- title: { ru: Введение, en: Introduction }
+  items:
+    - title: { ru: Предисловие, en: Preface }
+    - title: { ru: Разворачивание, en: Deploy }
+    - { title: { ru: Настройки сервера, en: Server settings }, url: bs-nginx }
+    - title: { ru: ОО-GUI, en: OO-GUI }
+      items:
+        - title: { ru: Общая картина, en: Overview }
+        - { title: { ru: Cоздание элементов, en: Creation of elements }, url: bs-new-elem }
+        - { title: { ru: Добавление элементов, en: Adding of elements }, url: bs-add-elem }
+- title: { ru: Приложение, en: Application }
+  items:
+    - { title: { ru: Структура приложения,    en: Application structure     }, url: app-struct        }
+    - { title: { ru: AJAX-взаимодействие,     en: AJAX interaction          }, url: app-ajax          }
+    - { title: { ru: Конфигурация приложения, en: Application configuration }, url: app-config        }
+    - { title: { ru: Модульная архитектура,   en: Modular architecture      }, url: app-modules       }
+    - { title: { ru: Конфигурация модуля,     en: Module configuration      }, url: app-module-config }
+    - { title: { ru: Компилятор js-кода,      en: Js-compiler               }, url: app-js-compiler   }
+    - { title: { ru: Пример приложения,       en: Application example       }, url: app-example       }
+- title: { ru: Модуль, en: Module }
+  items:
+    - title: { ru: Общая информация,       en: Overview               }
+    - title: { ru: Конфигурация,           en: Configuration          }
+    - title: { ru: Классификация,          en: Classification         }
+    - title: { ru: Вложение модулей,       en: Module attachments     }
+    - title: { ru: Возможности на сервере, en: Server-side properties }
+    - title: { ru: Возможности на клиенте, en: Client-side properties }
+- title: Концепции js
+  items:
+    - title: Директивы js-компилятора
+    - title: Расширенный синтаксис
+    - title: Расширение сущностей языка
+    - title: Стратегии позиционирования
+      items:
+        - { title: Align,  url: ps-align  }
+        - { title: Stream, url: ps-stream }
+        - { title: Grid,   url: ps-grid   }
+        - { title: Slot,   url: ps-slot   }
+    - title: Поведения
+    - title: Связывания
+      items:
+        - { title: Simple,     url: bn-simple     }
+        - { title: Matrix,     url: bn-matrix     }
+        - { title: Agregation, url: bn-agregation }
+    - title: Структуры данных
+      items:
+        - title: Collection
+        - title: Tree
+    - title: Инструменты
+      items:
+        - title: Timer
+        - { title: Synchronizer, url: bs-synchronizer }
+        - title: Singleton
+        - title: KeypressManager
+- title: Концепции php
+  items:
+    - title: Conductor
+    - title: Dialog
+    - title: Object
+    - title: Respondent
+    - title: Структуры данных
+      items:
+        - title: Collection
+        - title: Tree
+        - title: Vector
+    - title: Инструменты
+      items:
+        - title: Db
+        - title: File
+        - { title: Yaml, url: php-yaml }
+        - title: Math
+- title: GUI
+  items:
+    - title: Общая схема виджетов
+    - title: Каталог виджетов
+      items:
+        - { title: Общая схема,   url: wd-scheme         }
+        - { title: Rect,          url: wd-rect           }
+        - { title: TextBox,       url: wd-text-box       }
+        - { title: Image,         url: wd-image          }
+        - { title: ImageSlider,   url: wd-image-slider   }
+        - { title: Table,         url: wd-table          }
+        - { title: LabeledGroup,  url: wd-labeled-group  }
+        - { title: RadioGroup,    url: wd-radio-group    }
+        - { title: CheckboxGroup, url: wd-checkbox-group }
+        - { title: MultiBox,      url: wd-multi-box      }
+        - { title: TreeBox,       url: wd-tree-box       }
+        - title: ActiveBox
+          items:
+            - { title: 'Exemple #0', url: wd-active-box-0 }
+            - { title: 'Exemple #1', url: wd-active-box-1 }
+            - { title: 'Exemple #2', url: wd-active-box-2 }
+    - title: Блоки
+- title: HTMP
+  items:
+    - { title: Общая информация, url: mp-base }
+- title: Инструментальные модули
+  items:
+    - title: codeRedactor
+    - title: db/manager
+    - title: db/tableToTable
+- title: Демонстрации
+  items:
+    - { title: { ru: Тетрис, en: Tetris }, to: games/tetris }
+    - { title: { ru: Замки Бургундии, en: Castles of Burgundy }, to: games/cofb }
+    - { title: Лэндинг }
+    - { title: { ru: Конструктор мебели, en: Furniture constructor }, to: furcon }

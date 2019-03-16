@@ -1,0 +1,10 @@
+/* https://html5book.ru/html-lists/ */
+.ol_class {
+	list-style: none; 
+	counter-reset: li; 
+}
+
+.li_class:before {
+	counter-increment: li; 
+	content: counters(li,".") ". "; 
+}

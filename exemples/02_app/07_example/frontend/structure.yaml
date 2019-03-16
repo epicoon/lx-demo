@@ -1,0 +1,44 @@
+- title: config
+  items:
+    - { title: main.php, key: dum_config_main }
+    - { title: module.php, key: dum_config_module }
+- title: home
+  items:
+    - title: view
+      items:
+        - { title: _root.php, key: view_root }
+        - { title: description.php, key: view_description }
+        - { title: gamePult.php, key: view_game }
+        - { title: pointsPult.php, key: view_points }
+        - { title: menu.php, key: view_menu }
+    - title: models
+      items:
+        - { title: Score.yaml, key: score_yaml }
+    - title: frontend
+      items:
+        - { title: _main.js, key: js_main }
+        - { title: handlers.js, key: js_handlers }
+        - { title: Score.js, key: js_score }
+        - { title: Settings.js, key: js_settings }
+        - { title: Roulette.js, key: js_roulette }
+    - title: backend
+      items:
+        - { title: ServerGame.php, key: php_server_game }
+        - { title: SettingsService.php, key: php_settings_service }
+        - { title: GameService.php, key: php_game_service }
+        - { title: Score.php, key: php_score }
+        - { title: Game.php, key: php_game }
+    - title: data
+      items:
+        - { title: settings.json, key: json_settings }
+        - { title: games.json, key: json_games }
+    - { title: config.php, key: dum_m_config }
+- title: web
+  items:
+    - title: js
+      items:
+        - { title: _bootstrap.js, key: dum_bootstrap }
+        - { title: _main.js, key: dum_main }
+    - { title: style, key: dum_style }
+    - { title: index.php, key: dum_index }
+- { title: _core, key: dum_core }
