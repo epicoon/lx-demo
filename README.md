@@ -1,2 +1,2 @@
 # lx-demo
-Demo for lx
+Lx documentation

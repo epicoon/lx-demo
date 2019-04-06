@@ -146,7 +146,7 @@ class GameService {
 	 * Метод доступа к файлу с сохранениями
 	 * */
 	private function getGamesFile() {
-		$module = \lx::getModule('lx/demo:roulette');
+		$module = \lx::getModule('lx/lx-demo:roulette');
 		return $module->getFile(self::GAMES_FILE_PATH);
 	}
 }

@@ -14,7 +14,8 @@ class Module extends \lx\Module {
 		}
 		if (!$lang) $lang = \lx\demo\Service::DEFAULT_LANGUAGE;
 
-		$this->data->l10n = ['lang' => $lang];
+		//todo - нормальную локализацию делать!
+		$this->clientParams->l10n = ['lang' => $lang];
 	}
 
 	/**
@@ -22,10 +23,10 @@ class Module extends \lx\Module {
 	 * */
 	public function l10n($key = null) {
 		if ($key === null) {
-			return \lx\DataObject::create($this->data->l10n);
+			return \lx\DataObject::create($this->clientParams->l10n);
 		}
 
-		return (new \lx\demo\tools\l10n\Localizator($this->data->l10n['lang']))->translate($key);
+		return (new \lx\demo\tools\l10n\Localizator($this->clientParams->l10n['lang']))->translate($key);
 	}
 
 	/**

@@ -21,7 +21,7 @@ const MainMenu = Module->MainMenu;
 const TreeBox = MainMenu->>tree;
 TreeBox.setLeaf(function(leaf) {
 	var data = leaf.node.data,
-		title = data.title.isString ? data.title : data.title[Module.data.l10n.lang];
+		title = data.title.isString ? data.title : data.title[Module.params.l10n.lang];
 	leaf->label.text(title);
 
 	//!!! подсветить пустые заголовки, по которым еще нет содержимого
@@ -34,7 +34,7 @@ TreeBox.setLeaf(function(leaf) {
 	else if (data.to) leaf->label.click(()=> window.open(data.to));
 	else leaf->label.click(function() { this~>open.trigger('click'); });
 });
-TreeBox.setData(lx.Tree.create(#lx:yaml tree, 'items'));
+TreeBox.setData(lx.Tree.create(#lx:load tree, 'items'));
 // Чтобы открытые ветви дерева не забывались при перезагрузке страницы
 TreeBox.setStateMemoryKey('treeState');
 
