@@ -5,4 +5,8 @@ return [
 	'respondents' => [
 		'Resp' => 'Resp'
 	],
+
+	'aliases' => [
+		'showModule' => '../../roulette',
+	],
 ];

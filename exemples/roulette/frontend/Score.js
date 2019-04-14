@@ -1,7 +1,7 @@
 // Модель подсчета очков
 class Score extends lx.BindableModel {
 	// Используем модель из yaml-конфигурации
-	#lx:MODEL_NAME Score;
+	#lx:modelName Score;
 
 	// Установить баланс
 	setBalance(value) {

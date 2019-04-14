@@ -11,7 +11,7 @@
         - { title: gamePult.php, key: view_game }
         - { title: pointsPult.php, key: view_points }
         - { title: menu.php, key: view_menu }
-    - title: models
+    - title: model
       items:
         - { title: Score.yaml, key: score_yaml }
     - title: frontend
