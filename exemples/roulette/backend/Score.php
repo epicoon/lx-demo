@@ -2,10 +2,12 @@
 
 namespace roulette\backend;
 
+use lx\model\Model;
+
 /**
  * Серверная модель состояния очков
  * */
-class Score extends \lx\Model {
+class Score extends Model {
 	// Используем модель из yaml-конфигурации
-	const MODEL_NAME = 'Score';
+	protected static $modelName = 'Score';
 }
