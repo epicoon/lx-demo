@@ -23,7 +23,7 @@ $view = new lx\ActiveBox([
 $view->border();
 $code = new lx\Box([ 'key' => 'code', 'parent' => $view->get('body') ]);
 
-$code->setModule(lx::getService('lx/lx-dev-wizard')->getModule('codeRedactor'));
+$code->setModule(lx::getService('lx/lx-tools')->getModule('codeRedactor'));
 
 // Колонка с рулеткой
 $stand = new lx\ActiveBox([

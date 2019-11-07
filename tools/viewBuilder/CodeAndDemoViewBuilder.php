@@ -34,7 +34,7 @@ class CodeAndDemoViewBuilder {
 		$f = $Module->findFile('_main.js');
 
 		$code = self::localizate($f->get());
-		$service = \lx\Service::create('lx/lx-dev-wizard');
+		$service = \lx\Service::create('lx/lx-tools');
 		$codeRedactor = $service->getModule('codeRedactor');
 		$codeBox->get('body')->setModule($codeRedactor, [
 			'text' => $code,
