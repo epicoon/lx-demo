@@ -80,39 +80,43 @@ class Service extends \lx\Service {
 	//=========================================================================================================================
 
 	/**
-	 * Если запрошен несуществующий модуль - вернем стандартный ответ
+	 * Если запрошен несуществующий плагин - вернем стандартный ответ
 	 * */
-	public function getModule($moduleName, $params = []) {
-		if ($moduleName == '_main') {
-			return parent::getModule('_main', $params);
+	public function getPlugin($pluginName, $params = []) {
+		if ($pluginName == '_main') {
+			return parent::getPlugin('_main', $params);
 		}
 
-		if ($moduleName == 'roulette') {
+		if ($pluginName == 'roulette') {
 			$path = $this->getPath() . '/exemples/roulette';
-			return \lx\Module::create($this, 'roulette', $path);
+			return \lx\Plugin::create($this, 'roulette', $path);
 		}
 
-		$path = $this->getModulePath($moduleName);
-		$module = \lx\Module::create($this, $moduleName, $path);
+		$path = $this->getPluginPath($pluginName);
+		$plugin = \lx\Plugin::create($this, $pluginName, $path);
 
-		if (!$module) {
-			$module = \lx\Module::create($this, $moduleName, $this->getPath() . '/exemples/' . self::DEFAULT_PATH);
+		if (!$plugin) {
+			$plugin = \lx\Plugin::create(
+				$this,
+				$pluginName,
+				$this->getPath() . '/exemples/' . self::DEFAULT_PATH
+			);
 		} else {
-			$module->setConfig('images', '@site/web/images/demo');
+			$plugin->setConfig('images', '@site/web/images/demo');
 		}
 
-		return $module;
+		return $plugin;
 	}
 
 	/**
 	 * По ключу модуля найдем где он находится
 	 * */
-	private function getModulePath($moduleName) {
+	private function getPluginPath($pluginName) {
 		$arrs = $this->totalPathArray();
 		$path = '';
 		foreach ($arrs as $arr) {
-			if (!array_key_exists($moduleName, $arr)) continue;
-			$path = $arr[$moduleName];
+			if (!array_key_exists($pluginName, $arr)) continue;
+			$path = $arr[$pluginName];
 		}
 
 		if ($path == '') $path = self::DEFAULT_PATH;

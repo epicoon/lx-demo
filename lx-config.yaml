@@ -14,6 +14,8 @@ service:
   router:
     type: map
     routes:
-      /: {module:_main}
-  modules: ''
+      /: {plugin: _main}
+  plugins: ''
   models: exemples/roulette/model
+  aliases:
+    viewTools: tools/viewBuilder

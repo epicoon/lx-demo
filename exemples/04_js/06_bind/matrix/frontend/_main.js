@@ -1,3 +1,7 @@
+#lx:use lx.Form;
+#lx:use lx.Button;
+#lx:use lx.Input;
+
 // Класс модели данных
 class Test extends lx.BindableModel {
 	#lx:schema name, num;

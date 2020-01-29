@@ -1,7 +1,8 @@
 <?php
 return [
-	'class' => 'lx\demo\_main\Module',
+	'class' => 'lx\demo\_main\Plugin',
 
-	//todo В реальности свои ассеты должны быть - нельзя указывать на неконтролируемый каталог
+	'cacheType' => 'smart',
+
 	'images' => '@site/web/images/demo',
 ];

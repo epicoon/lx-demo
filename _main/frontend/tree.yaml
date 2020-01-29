@@ -2,7 +2,7 @@
   items:
     - title: { ru: Предисловие, en: Preface }
     - title: { ru: Разворачивание, en: Deploy }
-    - { title: { ru: Настройки сервера, en: Server settings }, url: bs-nginx }
+    - { title: { ru: Настройки сервера, en: Server settings } }
     - title: { ru: ОО-GUI, en: OO-GUI }
       items:
         - title: { ru: Общая картина, en: Overview }
@@ -103,5 +103,3 @@
   items:
     - { title: { ru: Тетрис, en: Tetris }, to: games/tetris }
     - { title: { ru: Замки Бургундии, en: Castles of Burgundy }, to: games/cofb }
-    - { title: Лэндинг }
-    - { title: { ru: Конструктор мебели, en: Furniture constructor }, to: furcon }

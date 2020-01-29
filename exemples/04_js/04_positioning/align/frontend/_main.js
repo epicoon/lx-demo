@@ -11,12 +11,14 @@ lx.Box.construct(2, {
 
 el.text('efefe wfwef trrtbr');
 
-el.align({
-	horizontal: lx.RIGHT,
-	vertical: lx.BOTTOM,
-	subject: [el->pic, 'text'],  // необязательно указывать в данном случае, т.к. перечислены все потомки - это поведение по умолчанию
-	step: '3%',
-	paddingX: '5%',
-	paddingY: '5%',
-	direction: lx.VERTICAL
-});
+//TODO - упростил работу с выравниваниями, надо тут актуализировать
+
+// el.align({
+// 	horizontal: lx.RIGHT,
+// 	vertical: lx.BOTTOM,
+// 	subject: [el->pic, 'text'],  // необязательно указывать в данном случае, т.к. перечислены все потомки - это поведение по умолчанию
+// 	step: '3%',
+// 	paddingX: '5%',
+// 	paddingY: '5%',
+// 	direction: lx.VERTICAL
+// });

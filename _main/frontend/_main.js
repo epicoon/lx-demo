@@ -1,35 +1,40 @@
-const demo = Module->demoBox->body;
+/**
+ * @var lx.Plugin Plugin
+ * @var lx.Snippet Snippet
+ */
+
+const demo = Plugin->demoBox->body;
 demo.on('scroll', function() {
 	lx.Cookie.set('y-scroll', Math.round(this.scrollPos().y));
 });
 
-Module.registerActiveRequest('sheet', function(res) {
+Plugin.registerActiveRequest('sheet', function(res) {
 	if (!res) {
-		Module->demoBox->header.text('Error');
+		Plugin->demoBox.setHeader('Error');
 		return;
 	}
 
-	Module->demoBox->header.text('Demo');
-	Module->demoBox->body.injectModule(res, function() {
+	Plugin->demoBox.setHeader('Demo');
+	Plugin->demoBox->body.injectPlugin(res, function() {
 		var y = lx.Cookie.get('y-scroll');
 		if (y !== undefined) demo.scrollTo({y});
 	});
 });
 
 // Настройка меню-навигатора
-const MainMenu = Module->MainMenu;
+const MainMenu = Plugin->MainMenu;
 const TreeBox = MainMenu->>tree;
 TreeBox.setLeaf(function(leaf) {
 	var data = leaf.node.data,
-		title = data.title.isString ? data.title : data.title[Module.params.l10n.lang];
+		title = data.title.isString ? data.title : data.title['ru'/*Module.params.l10n.lang*/];
 	leaf->label.text(title);
 
 	//!!! подсветить пустые заголовки, по которым еще нет содержимого
 	if (leaf.node.nodes.lxEmpty && !data.url && !data.to) leaf->label.fill('red');
 
 	if (data.url) leaf->label.click(()=> {
-		Module->demoBox->header.text('Loading...');
-		Module.activeRequest('sheet', {caption: data.url});
+		Plugin->demoBox.setHeader('Loading...');
+		Plugin.activeRequest('sheet', {caption: data.url});
 	});
 	else if (data.to) leaf->label.click(()=> window.open(data.to));
 	else leaf->label.click(function() { this~>open.trigger('click'); });
@@ -37,6 +42,13 @@ TreeBox.setLeaf(function(leaf) {
 TreeBox.setData(lx.Tree.create(#lx:load tree, 'items'));
 // Чтобы открытые ветви дерева не забывались при перезагрузке страницы
 TreeBox.setStateMemoryKey('treeState');
+
+// Синхронизация ширины коробки для дерева и актив бокса
+MainMenu.on('resize', function() {
+	TreeBox->move.left( this.width('px') - 25 + 'px' );
+	TreeBox->move.trigger('move');
+});
+MainMenu.trigger('resize');
 
 
 

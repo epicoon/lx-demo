@@ -1,29 +1,29 @@
+#lx:use lx.ActiveBox;
+
 var ab = new lx.ActiveBox({
-	geom: [5, 5, 40, 40]
+	geom: [5, 5, 90, 40]
 }).border();
 
-ab->body.grid({
-	// sizeBehavior: lx.GridPositioningStrategy.SIZE_BEHAVIOR_PROPORTIONAL
-	sizeBehavior: lx.GridPositioningStrategy.SIZE_BEHAVIOR_PROPORTIONAL_CONST,
+ab.grid({
 	indent: '10px',
 	rows: 5
-}).begin();
+});
 
-var w = 6;
+ab.begin();
+
 new lx.Rect({
-	width: w,
+	size: [1, 1],
 	style: {fill: 'green'}
 });
 new lx.Rect({
-	width: w,
-	style: {fill: 'green'}
+	size: [2, 2],
+	style: {fill: 'blue'}
 });
 
 
 new lx.Rect({
-	left: 3,
-	width: w,
-	style: {fill: 'green'}
+	geom: [3, 3, 6, 2],
+	style: {fill: 'red'}
 });
 
-ab->body.end();
+ab.end();

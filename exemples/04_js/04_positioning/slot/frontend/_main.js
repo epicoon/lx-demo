@@ -1,3 +1,6 @@
+#lx:use lx.ActiveBox;
+#lx:use lx.Button;
+
 var box = new lx.ActiveBox({
 	geom: [10, 10, 40, 40]
 }).border();
@@ -12,6 +15,6 @@ body.slot({
 	step: '10px',
 	padding: '20px'
 });
-body.slots().call('border');
+body.getChildren().call('border');
 
 body.add(lx.Button, 5, {}, {postBuild: (elem, i)=> elem.text(i)});

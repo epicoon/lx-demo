@@ -1,3 +1,8 @@
+#lx:use lx.Form;
+#lx:use lx.Input;
+#lx:use lx.RadioGroup;
+#lx:use lx.CheckboxGroup;
+
 // Класс, используемый классом модели посредством композиции
 class Sub {
 	constructor() {

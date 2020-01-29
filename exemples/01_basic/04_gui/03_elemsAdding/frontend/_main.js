@@ -1,3 +1,5 @@
+#lx:use lx.Button;
+
 // 1. Добавление элемента явным указанием родителя в конфиге
 var parentBox = new lx.Box({ geom: [5, 5, 40, 10], text: 'parent box 1' }).border();
 var childBox = new lx.Box({
