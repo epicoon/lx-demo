@@ -21,9 +21,9 @@ class TestRequest {
 	send() {
 		// Здесь отправляется запрос на сервер сгенерировать
 		// случайное число от 1 до 10
-		^Resp.getRand() ? this.onLoad : this.onError;
+		^Resp.getRand().then(this.onLoad).catch(this.onError);
 		/* Этот странный синтаксис - то же самое, что:
-		 * Module.ajax('Resp/getRand', [], {success:this.onLoad, error:this.onError});
+		 * Plugin.ajax('Resp.getRand', []).send().then(this.onLoad).catch(this.onError);
 		 * Подроднее см. расширенный js-синтаксис
 		 */
 	}

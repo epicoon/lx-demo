@@ -7,7 +7,7 @@
 let gameKey = lx.Cookie.get('gameKey');
 
 // Запрашиваем у сервера состояние настроек и игры (если есть ключ текущей игры)
-^ServerGame.load(gameKey) : (data)=> {
+^ServerGame.load(gameKey).then((data)=> {
 	// Полученные данные о настройках запишем в модель
 	settings.setFields(data.settings);
 
@@ -15,4 +15,4 @@ let gameKey = lx.Cookie.get('gameKey');
 	if (data.game) {
 		score.setFields(data.game);
 	}
-};
+});

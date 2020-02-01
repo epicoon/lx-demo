@@ -30,6 +30,21 @@ new lx.Button({
 	}
 });
 
+
+// Виджет, который будет связан по типу агрегатора с коллекцией моделей
+var w = new lx.Box({
+	grid: {indent:'10px'},
+	geom: [40, 4, 50, 4]
+}).border();
+w.begin();
+new lx.Input({field: 'name', width: 3});
+new lx.Input({field: 'num', width: 3});
+w.end();
+
+// Связываем коллекцию и виджет
+w.agregator(c);
+
+
 // Виджет, который сделаем матрицей для визуализации коллекции
 var frame2 = new lx.Box({
 	geom: [10, 12, 80, 45],
@@ -59,16 +74,3 @@ frame2.matrix({
 		});
 	}
 });
-
-// Виджет, который будет связан по типу агрегатора с коллекцией моделей
-var w = new lx.Box({
-	grid: {indent:'10px'},
-	geom: [40, 4, 50, 4]
-}).border();
-w.begin();
-new lx.Input({field: 'name', width: 3});
-new lx.Input({field: 'num', width: 3});
-w.end();
-
-// Связываем коллекцию и виджет
-w.agregator(c);

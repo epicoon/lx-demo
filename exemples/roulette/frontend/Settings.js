@@ -16,12 +16,12 @@ class Settings extends lx.BindableModel {
 		newSettings[field] = value;
 		
 		// Отправляем на сервер данные с новым значением настройки
-		^ServerGame.changeSettings(newSettings) : (response)=> {
+		^ServerGame.changeSettings(newSettings).then((response)=> {
 			// Сервер отвечает значением, которое ему удалось сохранить
 			if (field in response) {
 				this[field] = +response[field];
 			}
-		};
+		});
 	}
 }
 

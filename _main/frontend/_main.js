@@ -8,7 +8,7 @@ demo.on('scroll', function() {
 	lx.Cookie.set('y-scroll', Math.round(this.scrollPos().y));
 });
 
-Plugin.registerActiveRequest('sheet', function(res) {
+Plugin.registerActiveRequest('sheet', '', function(res) {
 	if (!res) {
 		Plugin->demoBox.setHeader('Error');
 		return;

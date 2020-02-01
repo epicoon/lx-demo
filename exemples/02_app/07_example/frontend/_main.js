@@ -8,11 +8,11 @@ Module->>tree.setLeaf(function(leaf) {
 		leaf.click(function() { this->open.trigger('click'); });
 	} else if (data.key) {
 		leaf.click(()=> {
-			^Resp.loadFile(data.key) : (result)=> {
+			^Resp.loadFile(data.key).then((result)=> {
 				let redactor = Module->>redactor;
 				redactor.lang = result.ext;
 				redactor.setText(result.code);
-			}
+			});
 		});
 	}
 });

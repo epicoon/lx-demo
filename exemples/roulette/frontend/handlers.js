@@ -4,13 +4,13 @@ Module->>newGame.click(function() {
 	let oldGameKey = lx.Cookie.get('gameKey');
 
 	// Запрос к серверу на регистрацию новой игры взамен текущей
-	^ServerGame.register(oldGameKey) : (response)=> {
+	^ServerGame.register(oldGameKey).then((response)=> {
 		// Положим в cookie новый ключ
 		lx.Cookie.set('gameKey', response.gameKey);
 		// Обновим очки
 		score.resetFields();
 		score.setBalance(response.startAmount);
-	};
+	});
 });
 
 // Кнопка остановки игры
@@ -34,13 +34,13 @@ Module->>runGame.click(function() {
 	if (gameKey === undefined) return;
 
 	// Запрос к серверу для запуска рулетки
-	^ServerGame.runRoulette(gameKey) : (response)=> {
+	^ServerGame.runRoulette(gameKey).then((response)=> {
 		// Получаем обновленное состояние очков
 		score.setFields(response.score);
 
 		// Обновим состояние рулетки
 		roulette.renew(response.roulette);
-	};
+	});
 });
 
 // Создадим обработчики для отслеживания изменения значений рулетки:
