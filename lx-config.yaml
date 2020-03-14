@@ -11,10 +11,8 @@ autoload:
 
 service:
   class: lx\demo\Service
-  router:
-    type: map
-    routes:
-      /: {plugin: _main}
+  routes:
+    /: {plugin: _main}
   plugins: ''
   models: exemples/roulette/model
   aliases:

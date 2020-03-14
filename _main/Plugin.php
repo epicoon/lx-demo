@@ -18,7 +18,7 @@ class Plugin extends \lx\Plugin {
 //		if (!$lang) $lang = \lx\demo\Service::DEFAULT_LANGUAGE;
 //
 //		//todo - нормальную локализацию делать!
-//		$this->clientParams->l10n = ['lang' => $lang];
+//		$this->params->l10n = ['lang' => $lang];
 //	}
 
 //	/**
@@ -26,10 +26,10 @@ class Plugin extends \lx\Plugin {
 //	 * */
 //	public function l10n($key = null) {
 //		if ($key === null) {
-//			return \lx\DataObject::create($this->clientParams->l10n);
+//			return \lx\DataObject::create($this->params->l10n);
 //		}
 //
-//		return (new \lx\demo\tools\l10n\Localizator($this->clientParams->l10n['lang']))->translate($key);
+//		return (new \lx\demo\tools\l10n\Localizator($this->params->l10n['lang']))->translate($key);
 //	}
 
 	/**
@@ -41,11 +41,11 @@ class Plugin extends \lx\Plugin {
 
 //		// Этому ajax-запросу надо соответствовать текущим параметрам страницы, поэтому узнаем их вот так:
 //		$location = \lx::$dialog->location();
-//		$plugin->clientParams->lang = isset($location->searchArray['lang'])
+//		$plugin->params->lang = isset($location->searchArray['lang'])
 //			? $location->searchArray['lang']
 //			: \lx\demo\Service::DEFAULT_LANGUAGE;
 
-		$builder = new \lx\PluginBuildContext($plugin);
+		$builder = new \lx\PluginBuildContext(['plugin' => $plugin]);
 		return $builder->build();
 	}
 }

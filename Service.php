@@ -3,6 +3,7 @@
 namespace lx\demo;
 
 class Service extends \lx\Service {
+	const EXAMPLES_DIR = 'examples/';
 	const
 		DEFAULT_PATH = 'stdResponse',
 		DEFAULT_LANGUAGE = 'ru',
@@ -76,36 +77,41 @@ class Service extends \lx\Service {
 	];
 	private $__tools = [
 	];
+	private $__special = [
+		'roulette' => 'roulette',
+	];
 
 	//=========================================================================================================================
 
 	/**
 	 * Если запрошен несуществующий плагин - вернем стандартный ответ
 	 * */
-	public function getPlugin($pluginName, $params = []) {
+	public function getPlugin($pluginName, $params = [], $cParams = []) {
 		if ($pluginName == '_main') {
 			return parent::getPlugin('_main', $params);
 		}
 
-		if ($pluginName == 'roulette') {
-			$path = $this->getPath() . '/exemples/roulette';
-			return \lx\Plugin::create($this, 'roulette', $path);
-		}
-
 		$path = $this->getPluginPath($pluginName);
 		$plugin = \lx\Plugin::create($this, $pluginName, $path);
-
-		if (!$plugin) {
-			$plugin = \lx\Plugin::create(
-				$this,
-				$pluginName,
-				$this->getPath() . '/exemples/' . self::DEFAULT_PATH
-			);
-		} else {
+		if ($plugin) {
 			$plugin->setConfig('images', '@site/web/images/demo');
+		} else {
+			$path = $this->getPath() . '/' . self::EXAMPLES_DIR . self::DEFAULT_PATH;
+			$plugin = \lx\Plugin::create($this, $pluginName, $path);
 		}
-
 		return $plugin;
+	}
+
+	public function getStaticPluginsDataList() {
+		$result = parent::getStaticPluginsDataList();
+		$arrs = $this->totalPathArray();
+		foreach ($arrs as $arr) {
+			foreach ($arr as $name => $path) {
+				$result[$name] = self::EXAMPLES_DIR . $path;
+			}
+		}
+		$result['default'] = self::EXAMPLES_DIR . self::DEFAULT_PATH;
+		return $result;
 	}
 
 	/**
@@ -113,14 +119,14 @@ class Service extends \lx\Service {
 	 * */
 	private function getPluginPath($pluginName) {
 		$arrs = $this->totalPathArray();
-		$path = '';
+		$path = $this->getPath() . '/' . self::EXAMPLES_DIR;
 		foreach ($arrs as $arr) {
-			if (!array_key_exists($pluginName, $arr)) continue;
-			$path = $arr[$pluginName];
+			if (array_key_exists($pluginName, $arr)) {
+				return $path . $arr[$pluginName];
+			}
 		}
 
-		if ($path == '') $path = self::DEFAULT_PATH;
-		return $this->getPath() . '/exemples/' . $path;
+		return $path . self::DEFAULT_PATH;
 	}
 
 	/**
@@ -136,6 +142,7 @@ class Service extends \lx\Service {
 			$this->__gui,
 			$this->__tools,
 			$this->__htmp,
+			$this->__special,
 		];
 	}
 }

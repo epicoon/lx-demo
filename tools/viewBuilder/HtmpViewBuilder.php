@@ -2,8 +2,13 @@
 
 namespace lx\demo\tools\viewBuilder;
 
-use \lx\HtmpFile;
+use \lx\File;
 use \lx\demo\tools\l10n\Localizator;
+
+
+//TODO Htmp это типа идея для шаблонизатора. Но ну его нахрен. Надо основательно идею шаблонизатора продумывать.
+// тут и так ничего сделано не было
+
 
 class HtmpViewBuilder {
 	const SOURCE_FILE = 'view/info.html';
@@ -32,6 +37,7 @@ class HtmpViewBuilder {
 		$headerL10n = (new Localizator(self::$contextModule->params->lang))->translate($header);
 		if ($headerL10n) $header = $headerL10n;
 
+		//Устарело. пост-жс признан ерундой и искоренён. Решать задачу другими путями
 		self::$contextModule->postJs("()=>
 			if (Module.root.parent && Module.root.parent->header)
 				Module.root.parent->header.text('$header');
@@ -126,7 +132,7 @@ class HtmpViewBuilder {
 	private static function getSourceText() {
 		$path = self::$contextModule->getFilePath(self::SOURCE_FILE);
 
-		$file = new HtmpFile($path);
+		$file = new File($path);
 		$text = $file->exists() ? $file->get() : '';
 
 		$text = self::localizate($text);

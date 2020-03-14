@@ -15,7 +15,7 @@ Plugin.registerActiveRequest('sheet', '', function(res) {
 	}
 
 	Plugin->demoBox.setHeader('Demo');
-	Plugin->demoBox->body.injectPlugin(res, function() {
+	Plugin->demoBox->body.setPlugin(res, {}, function() {
 		var y = lx.Cookie.get('y-scroll');
 		if (y !== undefined) demo.scrollTo({y});
 	});
