@@ -1,4 +1,4 @@
-name: lx/lx-demo
+name: lx/demo
 
 autoload:
   psr-4:

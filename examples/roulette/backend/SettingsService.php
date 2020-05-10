@@ -72,7 +72,7 @@ class SettingsService {
 	 * Получить доступ к файлу с настройками
 	 * */
 	private function getSettingsFile() {
-		$module = \lx::getModule('lx/lx-demo:roulette');
+		$module = \lx::getModule('lx/demo:roulette');
 		return $module->getFile(self::SETTINGS_FILE_PATH);
 	}
 }

@@ -27,7 +27,7 @@ var file = dir.find('_main.js');
 var code = file.get();
 
 code = localizate(code);
-codeBox.setPlugin('lx/lx-tools:codeRedactor', {
+codeBox.setPlugin('lx/tools:codeRedactor', {
     text: code,
     lang: 'js'
 });
