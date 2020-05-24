@@ -10,11 +10,11 @@ demo.on('scroll', function() {
 
 Plugin.registerActiveRequest('sheet', '', function(res) {
 	if (!res) {
-		Plugin->demoBox.setHeader('Error');
+		Plugin->demoBox.setHeaderText('Error');
 		return;
 	}
 
-	Plugin->demoBox.setHeader('Demo');
+	Plugin->demoBox.setHeaderText('Demo');
 	Plugin->demoBox->body.setPlugin(res, {}, function() {
 		var y = lx.Cookie.get('y-scroll');
 		if (y !== undefined) demo.scrollTo({y});
@@ -33,7 +33,7 @@ TreeBox.setLeaf(function(leaf) {
 	if (leaf.node.nodes.lxEmpty && !data.url && !data.to) leaf->label.fill('red');
 
 	if (data.url) leaf->label.click(()=> {
-		Plugin->demoBox.setHeader('Loading...');
+		Plugin->demoBox.setHeaderText('Loading...');
 		Plugin.activeRequest('sheet', {caption: data.url});
 	});
 	else if (data.to) leaf->label.click(()=> window.open(data.to));
