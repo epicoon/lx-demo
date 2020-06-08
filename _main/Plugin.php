@@ -46,6 +46,7 @@ class Plugin extends \lx\Plugin {
 //			: \lx\demo\Service::DEFAULT_LANGUAGE;
 
 		$builder = new \lx\PluginBuildContext(['plugin' => $plugin]);
-		return $builder->build();
+		$result = $builder->build();
+		return $this->prepareResponse($result);
 	}
 }
