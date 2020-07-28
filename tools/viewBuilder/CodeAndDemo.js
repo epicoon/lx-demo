@@ -32,7 +32,7 @@ codeBox.setPlugin('lx/tools:codeRedactor', {
     lang: 'js'
 });
 
-Plugin.onload(()=> {
+Plugin.onLoad(()=> {
     lx.WidgetHelper.autoParent = Plugin->demo->body;
 });
 
