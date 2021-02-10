@@ -17,4 +17,4 @@ Module->>tree.setLeaf(function(leaf) {
 	}
 });
 
-Module->>tree.setData(lx.Tree.create(#lx:load structure, 'items'));
+Module->>tree.setData(lx.Tree.create(#lx:load(structure), 'items'));
