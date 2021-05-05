@@ -2,6 +2,8 @@
 
 namespace lx\demo;
 
+use lx\Plugin;
+
 class Service extends \lx\Service {
 	const EXAMPLES_DIR = 'examples/';
 	const
@@ -86,23 +88,25 @@ class Service extends \lx\Service {
 	/**
 	 * Если запрошен несуществующий плагин - вернем стандартный ответ
 	 * */
-	public function getPlugin($pluginName, $params = [], $cParams = []) {
+	public function getPlugin(string $pluginName, array $attributes = []): ?Plugin
+    {
 		if ($pluginName == '_main') {
-			return parent::getPlugin('_main', $params);
+			return parent::getPlugin('_main', $attributes);
 		}
 
 		$path = $this->getPluginPath($pluginName);
-		$plugin = \lx\Plugin::create($this, $pluginName, $path);
+		$plugin = Plugin::create($this, $pluginName, $path);
 		if ($plugin) {
 			$plugin->setConfig('images', '@site/web/images/demo');
 		} else {
 			$path = $this->getPath() . '/' . self::EXAMPLES_DIR . self::DEFAULT_PATH;
-			$plugin = \lx\Plugin::create($this, $pluginName, $path);
+			$plugin = Plugin::create($this, $pluginName, $path);
 		}
 		return $plugin;
 	}
 
-	public function getStaticPluginsDataList() {
+	public function getStaticPluginsDataList(): array
+    {
 		$result = parent::getStaticPluginsDataList();
 		$arrs = $this->totalPathArray();
 		foreach ($arrs as $arr) {
