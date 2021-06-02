@@ -34,6 +34,8 @@ return [
 	'images' => 'assets/images',
 	'css' => 'assets/css',
 
+    //TODO deprecated!
+    
 	// Настройки подключения к базе данных могут быть индивидуальными для каждого модуля
 	'db' => [
 		'hostname' => 'localhost',

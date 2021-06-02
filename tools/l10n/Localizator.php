@@ -23,7 +23,7 @@ class Localizator {
 	private function map() {
 		if ($this->_map === null) {
 			$file = $this->getFile();
-			$this->_map = $file->load();
+			$this->_map = require($file->getPath());
 		}
 
 		return $this->_map;
