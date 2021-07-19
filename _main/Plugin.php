@@ -35,7 +35,7 @@ class Plugin extends \lx\Plugin {
 	/**
 	 * Ответ для активного GET AJAX-запроса - при переходе по страницам
 	 * */
-	public function ajaxResponse($data) {
+	public function handleAjaxResponse($data) {
 		$pluginName = $data['caption'];
 		$plugin = $this->service->getPlugin($pluginName);
 
