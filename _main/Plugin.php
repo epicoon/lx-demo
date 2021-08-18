@@ -2,6 +2,8 @@
 
 namespace lx\demo\_main;
 
+use lx\ResponseInterface;
+
 class Plugin extends \lx\Plugin {
 
 //TODO все закоменченное касается локализации. Есть нормальный механизм, надо к нему подвязаться
@@ -35,7 +37,8 @@ class Plugin extends \lx\Plugin {
 	/**
 	 * Ответ для активного GET AJAX-запроса - при переходе по страницам
 	 * */
-	public function handleAjaxResponse($data) {
+	public function handleAjaxResponse(array $data): ResponseInterface
+    {
 		$pluginName = $data['caption'];
 		$plugin = $this->service->getPlugin($pluginName);
 
