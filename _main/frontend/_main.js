@@ -30,7 +30,7 @@ TreeBox.setLeaf(function(leaf) {
 	leaf->label.text(title);
 
 	//!!! подсветить пустые заголовки, по которым еще нет содержимого
-	if (leaf.node.nodes.lxEmpty && !data.url && !data.to) leaf->label.fill('red');
+	if (leaf.node.nodes.lxEmpty() && !data.url && !data.to) leaf->label.fill('red');
 
 	if (data.url) leaf->label.click(()=> {
 		Plugin->demoBox.setHeaderText('Loading...');
@@ -52,5 +52,5 @@ MainMenu.trigger('resize');
 
 
 
-lx.keydown('a', function() {
+lx.onKeydown('a', function() {
 });
