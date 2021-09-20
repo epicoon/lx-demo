@@ -49,7 +49,7 @@ function localizate(code) {
     var reg = new RegExp('\\t*?\\/\\*<\\/' + lang + '>\\*\\/\\n', 'g');
     result = result.replace(reg, '');
 
-    langs.each((l)=> {
+    langs.forEach(l=>{
         var reg = new RegExp('\\t*?\\/\\*<' + l + '>\\*\\/\\n[\\w\\W]*?\\/\\*<\\/' + l + '>\\*\\/\\n', 'g');
         result = result.replace(reg, '');
     });

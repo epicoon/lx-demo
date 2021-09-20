@@ -26,7 +26,7 @@ const MainMenu = Plugin->MainMenu;
 const TreeBox = MainMenu->>tree;
 TreeBox.setLeaf(function(leaf) {
 	var data = leaf.node.data,
-		title = data.title.isString ? data.title : data.title['ru'/*Module.params.l10n.lang*/];
+		title = lx.isString(data.title) ? data.title : data.title['ru'/*Module.params.l10n.lang*/];
 	leaf->label.text(title);
 
 	//!!! подсветить пустые заголовки, по которым еще нет содержимого

@@ -33,13 +33,10 @@ var b = new lx.LabeledGroup({
 		labelAlign: [lx.RIGHT, lx.MIDDLE],
 	},
 
-	labels: arr.column('label')
+	labels: arr.lxColumn('label')
 }).border();
 
-b.units().callRepeat('click', arr.column('action'));
+b.units().callRepeat('click', arr.lxColumn('action'));
 
-b.widgets().each((a)=> {
-	a.on('blur', ()=> console.log(a.value()));
-});
-
-b.labels().each((a)=> a.style('color', 'red'));
+b.widgets().forEach(a=>a.on('blur', ()=> console.log(a.value())));
+b.labels().forEach(a=>a.style('color', 'red'));

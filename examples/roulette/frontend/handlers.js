@@ -47,7 +47,7 @@ Module->>runGame.click(function() {
 // 'rouletteState' + index - виджет слушает поле с этим названием
 // function(info) - эта функция будет вызываться, когда полю будет присвоено новое значение,
 // info - новое значение, присвоенное полю
-Module->>rouletteScreen.each((screen)=> {
+Module->>rouletteScreen.forEach(screen=>{
 	screen.setField('rouletteState' + screen.index, function(info) {
 		// info - придет в формате {value, match}, где:
 		// value - новое значение 

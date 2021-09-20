@@ -15,7 +15,7 @@ var b = new lx.ActiveBox({
 });
 var tab = b->body;
 tab.row(0).height(2);
-tab.rows().each((r)=> r.cell(0).width(2));
+tab.rows().forEach((r)=> r.cell(0).width(2));
 // tab.insertRows(2, 2);
 // tab.setRowCount(2);
 // tab.delRows(1, 2);
