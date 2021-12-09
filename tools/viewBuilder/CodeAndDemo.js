@@ -33,7 +33,7 @@ codeBox.setPlugin('lx/tools:codeRedactor', {
 });
 
 Plugin.beforeRun(()=> {
-    lx.WidgetHelper.autoParent = Plugin->demo->body;
+    lx.Rect.getAutoParent() = Plugin->demo->body;
 });
 
 //TODO примерно старая логика локализации. Вопрос для сервиса открытый

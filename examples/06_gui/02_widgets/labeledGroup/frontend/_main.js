@@ -36,7 +36,11 @@ var b = new lx.LabeledGroup({
 	labels: arr.lxColumn('label')
 }).border();
 
-b.units().callRepeat('click', arr.lxColumn('action'));
+var counter = 0;
+b.units().forEach(child=>{
+	child.click(arr.lxColumn('action')[counter]);
+	counter++;
+});
 
 b.widgets().forEach(a=>a.on('blur', ()=> console.log(a.value())));
 b.labels().forEach(a=>a.style('color', 'red'));

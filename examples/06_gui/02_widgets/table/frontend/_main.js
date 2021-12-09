@@ -21,7 +21,7 @@ tab.rows().forEach((r)=> r.cell(0).width(2));
 // tab.delRows(1, 2);
 // tab.addRows(3);
 // tab.setRowHeight('25px');
-// tab.rows(1, 2).call('height', '10px');
+// tab.rows(1, 2).forEach(child=>child.height('10px'));
 
 var t2 = new lx.Table({
 	geom: [55, 10, 40, 40],

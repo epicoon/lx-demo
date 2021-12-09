@@ -42,7 +42,7 @@ class HtmpViewBuilder {
 			if (Module.root.parent && Module.root.parent->header)
 				Module.root.parent->header.text('$header');
 
-			var toUp = lx.WidgetHelper.getHtmlFor({css: 'demo_toUp'});
+			var toUp = (new lx.TagRenderer({classList:['demo_toUp']})).toString();
 
 			?>.demo_nav.each((a)=> {
 				let el = ?>#{a.pointTo};

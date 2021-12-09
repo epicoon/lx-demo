@@ -3,11 +3,12 @@ var el = new lx.Box({
 	geom: [5, 10, 40, 40]
 }).fill('green');
 
+var color = true;
 lx.Box.construct(2, {
 	parent: el,
 	key: 'pic',
 	size: ['40px', '40px']
-}).call('border').callRepeat('fill', ['red', 'blue']);
+}).forEach(child=>child.border().fill((color=!color)?'red':'blue'));
 
 el.text('efefe wfwef trrtbr');
 

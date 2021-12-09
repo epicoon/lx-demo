@@ -49,7 +49,7 @@
     - title: Инструменты
       items:
         - title: Timer
-        - { title: Synchronizer, url: bs-synchronizer }
+        - { title: RequestSynchronizer, url: bs-synchronizer }
         - title: Singleton
         - title: KeypressManager
 - title: Концепции php

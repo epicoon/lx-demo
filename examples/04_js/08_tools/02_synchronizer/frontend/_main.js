@@ -43,7 +43,7 @@ new lx.Button({
 		logger.clear();
 
 		// Создадим экземпляр синхронизатора
-		var synchronizer = new lx.Synchronizer();
+		var synchronizer = new lx.RequestSynchronizer();
 
 		// Зарегистируем в нем запросы
 		synchronizer.register(request0, 'onLoad', 'onError');

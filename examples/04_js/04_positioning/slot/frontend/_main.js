@@ -15,6 +15,6 @@ body.slot({
 	step: '10px',
 	padding: '20px'
 });
-body.getChildren().call('border');
+body.getChildren().forEach(child=>child.border());
 
 body.add(lx.Button, 5, {}, {postBuild: (elem, i)=> elem.text(i)});

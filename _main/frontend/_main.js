@@ -39,7 +39,7 @@ TreeBox.setLeaf(function(leaf) {
 	else if (data.to) leaf->label.click(()=> window.open(data.to));
 	else leaf->label.click(function() { this~>open.trigger('click'); });
 });
-TreeBox.setData(lx.Tree.create(#lx:load(tree), 'items'));
+TreeBox.setData(lx.Tree.uCreateFromObject(#lx:load(tree), 'items'));
 // Чтобы открытые ветви дерева не забывались при перезагрузке страницы
 TreeBox.setStateMemoryKey('treeState');
 
