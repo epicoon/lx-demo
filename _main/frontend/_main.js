@@ -5,7 +5,7 @@
 
 const demo = Plugin->demoBox->body;
 demo.on('scroll', function() {
-	lx.Cookie.set('y-scroll', Math.round(this.scrollPos().y));
+	lx.Cookie.set('y-scroll', Math.round(this.getScrollPos().y));
 });
 
 Plugin.registerActiveRequest('sheet', '', function(res) {
