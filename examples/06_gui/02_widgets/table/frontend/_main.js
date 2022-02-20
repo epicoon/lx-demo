@@ -10,9 +10,9 @@ var b = new lx.ActiveBox({
 		// 	padding: '10px'
 		// },
 		interactive: true
-	}],
-	style: {border: ''}
+	}]
 });
+b.border();
 var tab = b->body;
 tab.row(0).height(2);
 tab.rows().forEach((r)=> r.cell(0).width(2));

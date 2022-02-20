@@ -48,7 +48,7 @@ new lx.RequestButton({
 	left: 3,
 	width: 6,
 	text: 'Submit',
-	style: {fill: 'Gray', color: 'white'}
+	style: {backgroundColor: 'gray', color: 'white'}
 });
 
 

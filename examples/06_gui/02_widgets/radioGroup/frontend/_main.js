@@ -13,4 +13,4 @@ var b = new lx.RadioGroup({
 
 console.log( b.value() );
 
-b.on('change', (e, newValue, oldValue)=> console.log(newValue, oldValue) );
+b.on('change', e=> console.log(e.newValue, e.oldValue) );

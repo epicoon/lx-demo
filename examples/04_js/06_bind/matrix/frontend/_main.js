@@ -42,11 +42,12 @@ frame.matrix({
 	items: c,
 	// Тип элемента матрицы
 	itemBox: [lx.Form, {
-		grid: {indent:'10px'},
-		style: {border: ''}
+		grid: {indent:'10px'}
 	}],
 	// Внутреннее наполнение элемента матрицы
 	itemRender: function(itemBox) {
+		itemBox.border();
+
 		itemBox.fields({
 			name: [lx.Input, {width: 3}],
 			num: [lx.Input, {width: 3}]
@@ -55,7 +56,7 @@ frame.matrix({
 		// Кнопка, удаляющая модель из коллекции
 		new lx.Box({
 			width: 1,
-			style: {fill: 'red'},
+			style: {backgroundColor: 'red'},
 			click: function() { c.removeAt(this.parent.index); }
 		});
 	}
@@ -73,11 +74,12 @@ frame2.matrix({
 	items: c,
 	// Тип элемента матрицы
 	itemBox: [lx.Form, {
-		grid: {indent:'10px'},
-		style: {border: ''}
+		grid: {indent:'10px'}
 	}],
 	// Внутреннее наполнение элемента матрицы
 	itemRender: function(itemBox) {
+		itemBox.border();
+
 		itemBox.fields({
 			name: [lx.Input, {width: 3}],
 			num: [lx.Input, {width: 3}]
@@ -86,7 +88,7 @@ frame2.matrix({
 		// Кнопка, удаляющая модель из коллекции
 		new lx.Box({
 			width: 1,
-			style: {fill: 'red'},
+			style: {backgroundColor: 'red'},
 			click: function() { c.removeAt(this.parent.index); }
 		});
 	}

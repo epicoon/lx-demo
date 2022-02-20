@@ -13,17 +13,17 @@ ab.begin();
 
 new lx.Rect({
 	size: [1, 1],
-	style: {fill: 'green'}
+	style: {backgroundColor: 'green'}
 });
 new lx.Rect({
 	size: [2, 2],
-	style: {fill: 'blue'}
+	style: {backgroundColor: 'blue'}
 });
 
 
 new lx.Rect({
 	geom: [3, 3, 6, 2],
-	style: {fill: 'red'}
+	style: {backgroundColor: 'red'}
 });
 
 ab.end();

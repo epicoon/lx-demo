@@ -13,4 +13,4 @@ var b = new lx.CheckboxGroup({
 
 console.log( b.value() );
 
-b.on('change', (e, changedIndex, changedCurrentValue)=> console.log(b.value(), changedIndex, changedCurrentValue) );
+b.on('change', e=> console.log(b.value(), e.changedIndex, e.currentValues) );

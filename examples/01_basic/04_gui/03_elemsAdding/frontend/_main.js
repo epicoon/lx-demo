@@ -6,7 +6,7 @@ var childBox = new lx.Box({
 	parent: parentBox,
 	geom: [10, 50, 80, 40],
 	text: 'child box 1',
-	style: {fill: 'green'}
+	style: {backgroundColor: 'green'}
 })
 
 // 2. Добавление элемента через метод Box::add()
@@ -15,14 +15,14 @@ parentBox.add(lx.Box, {
 	parent: parentBox,
 	geom: [10, 50, 80, 40],
 	text: 'child box 2',
-	style: {fill: 'green'}
+	style: {backgroundColor: 'green'}
 });
 
 // 3. Массовое добавление элементов через метод Box::add()
 var parentBox = new lx.Box({ geom: [5, 35, 40, 10], text: 'parent box 3' }).border();
 parentBox.add(lx.Box, 3, {
 	geom: [10, 50, 10, 40],
-	style: {fill: 'green'}
+	style: {backgroundColor: 'green'}
 }, {
 	postBuild: function(elem, i) {
 		elem.text(i);
@@ -36,10 +36,12 @@ var parentBox = new lx.Box({
 	stream:{direction:lx.HORIZONTAL}
 }).border();
 parentBox.add(lx.Box, 3, {
-	width: '20%',
-	style: {border: ''}
+	width: '20%'
 }, {
-	postBuild: (elem, i)=> elem.text(i)
+	postBuild: (elem, i)=> {
+		elem.border();
+		elem.text(i);
+	}
 });
 
 // При нажатии на эту кнопку произойдет вставка элемента перед
@@ -52,7 +54,7 @@ var but = new lx.Button({
 			width: '30%',
 			before: parentBox.child(1),
 			text: 'before 1',
-			style: {fill: 'green'},
+			style: {backgroundColor: 'green'},
 			// При нажатии на сам элемент всё вернется как было
 			click: function() { but.show(); this.del(); }
 		});
