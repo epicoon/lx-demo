@@ -1,5 +1,5 @@
 
-Module->>tree.setLeaf(function(leaf) {
+Module->>tree.setLeafRenderer(function(leaf) {
 	var data = leaf.node.data,
 		title = data.title;
 	leaf->label.text(title);

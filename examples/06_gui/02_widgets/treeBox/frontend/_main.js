@@ -3,7 +3,7 @@ var tree = new lx.Tree('a', 'b', 'c', 'a/a', 'a/b', 'a/c', 'b/a', 'b/b', 'c/a', 
 var t = new lx.TreeBox({
 	geom: [10, 10, 80, 60],
 	data: tree,
-	add: lx.TreeBox.ALLOWED_ADDING,
+	addAllowed: true,
 	leaf: function(leaf) {
 		leaf->label.text( leaf.node.key );
 		leaf.createAddButton();

@@ -24,7 +24,7 @@ Plugin.registerActiveRequest('sheet', '', function(res) {
 // Настройка меню-навигатора
 const MainMenu = Plugin->MainMenu;
 const TreeBox = MainMenu->>tree;
-TreeBox.setLeaf(function(leaf) {
+TreeBox.setLeafRenderer(function(leaf) {
 	var data = leaf.node.data,
 		title = lx.isString(data.title) ? data.title : data.title['ru'/*Module.params.l10n.lang*/];
 	leaf->label.text(title);
