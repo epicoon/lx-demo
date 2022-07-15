@@ -68,11 +68,6 @@
 		'widgets' => [
 			'widgets' => '@lx/widgets',
 		],
-
-		// [[:<ru>Глобальный js-код, выполняемый до разворачивания корневого модуля</ru><en>Global js-code executable before module deploy</en>:]]
-		'jsBootstrap' => '@web/js/_bootstrap.js',
-		// [[:<ru>Глобальный js-код, выполняемый после разворачивания корневого модуля</ru><en>Global js-code executable after module deploy</en>:]]
-		'jsMain' => '@web/js/_main.js',
 	];
 </pre></div>
 <p>
@@ -234,23 +229,9 @@
 <h2 id="demo_app_config_06"></h2>
 <p>[[:
 	<ru>
-		В конфигурации приложения есть два ключа, определяющие входные точки в исполняемый на клиенте js-код.
-		Ключ 'jsBootstrap' определяет путь к js-файлу, который будет выполнен до разворачивания корневого модуля.
-		Ключ 'jsMain' определяет путь к js-файлу, который будет выполнен после разворачивания корневого модуля.
+		устарело
 	</ru>
 	<en>
-		In the application configuration, there are two keys that define the input points to the js code executed on the client.
-		The 'jsBootstrap' key determines path to the js-file that will be executed before the root module will deployed.
-		The 'jsMain' key determines path to the js-file that will be executed after the root module will deployed.
-	</en>
-:]]</p>
-<p>[[:
-	<ru>
-		Подобный код может быть полезен, если нужно определить сущности, не привязанные к конкретным модулям, которые можно будет использовать в любом месте приложения.
-		Однако философия модульной архиректуры призывает не злоупотреблять возможностью писать глобальный js-код.
-	</ru>
-	<en>
-		Such code can be useful if you need to identify entities that are not tied to specific modules that can be used anywhere in the application.
-		However, the philosophy of the modular architecture calls not to abuse the ability to write global js-code.
+		deprecated
 	</en>
 :]]</p>
