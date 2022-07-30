@@ -2,7 +2,7 @@
 
 namespace lx\demo\_main;
 
-use lx\ResponseInterface;
+use lx\HttpResponseInterface;
 
 class Plugin extends \lx\Plugin {
 
@@ -37,7 +37,7 @@ class Plugin extends \lx\Plugin {
 	/**
 	 * Ответ для активного GET AJAX-запроса - при переходе по страницам
 	 * */
-	public function handleAjaxResponse(array $data): ResponseInterface
+	public function handleAjaxResponse(array $data): HttpResponseInterface
     {
 		$pluginName = $data['caption'];
 		$plugin = $this->service->getPlugin($pluginName);
