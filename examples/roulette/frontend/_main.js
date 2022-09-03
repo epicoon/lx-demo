@@ -4,7 +4,7 @@
 #lx:require Roulette;
 
 // В cookie лежит ключ текущей игры
-let gameKey = lx.Cookie.get('gameKey');
+let gameKey = lx.app.cookie.get('gameKey');
 
 // Запрашиваем у сервера состояние настроек и игры (если есть ключ текущей игры)
 ^ServerGame.load(gameKey).then((data)=> {

@@ -5,7 +5,7 @@
 
 const demo = Plugin->demoBox->body;
 demo.on('scroll', function() {
-	lx.Cookie.set('y-scroll', Math.round(this.getScrollPos().y));
+	lx.app.cookie.set('y-scroll', Math.round(this.getScrollPos().y));
 });
 
 Plugin.registerActiveRequest('sheet', '', function(res) {
@@ -16,7 +16,7 @@ Plugin.registerActiveRequest('sheet', '', function(res) {
 
 	Plugin->demoBox.setHeaderText('Demo');
 	Plugin->demoBox->body.setPlugin(res, {}, function() {
-		var y = lx.Cookie.get('y-scroll');
+		var y = lx.app.cookie.get('y-scroll');
 		if (y !== undefined) demo.scrollTo({y});
 	});
 });
@@ -52,5 +52,5 @@ MainMenu.trigger('resize');
 
 
 
-lx.onKeydown('a', function() {
+lx.app.keyboard.onKeydown('a', function() {
 });

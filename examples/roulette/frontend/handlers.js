@@ -1,12 +1,12 @@
 // Кнопка запуска новой игры
 Module->>newGame.click(function() {
 	// Ключ текущей игры лежит в cookie
-	let oldGameKey = lx.Cookie.get('gameKey');
+	let oldGameKey = lx.app.cookie.get('gameKey');
 
 	// Запрос к серверу на регистрацию новой игры взамен текущей
 	^ServerGame.register(oldGameKey).then((response)=> {
 		// Положим в cookie новый ключ
-		lx.Cookie.set('gameKey', response.gameKey);
+		lx.app.cookie.set('gameKey', response.gameKey);
 		// Обновим очки
 		score.resetFields();
 		score.setBalance(response.startAmount);
@@ -16,13 +16,13 @@ Module->>newGame.click(function() {
 // Кнопка остановки игры
 Module->>dropGame.click(function() {
 	// Если ключа в cookie нет - нет текущей игры
-	let gameKey = lx.Cookie.get('gameKey');
+	let gameKey = lx.app.cookie.get('gameKey');
 	if (gameKey === undefined) return;
 
 	// Запрос к серверу на остановку текущей игры
 	^ServerGame.dropGame(gameKey);
 	// Удаляем ключ из cookie
-	lx.Cookie.remove('gameKey');
+	lx.app.cookie.remove('gameKey');
 	// Обнулим очки
 	score.resetFields();
 });
@@ -30,7 +30,7 @@ Module->>dropGame.click(function() {
 // Кнопка запуска раунда игры
 Module->>runGame.click(function() {
 	// Если ключа в cookie нет - нет текущей игры
-	let gameKey = lx.Cookie.get('gameKey');
+	let gameKey = lx.app.cookie.get('gameKey');
 	if (gameKey === undefined) return;
 
 	// Запрос к серверу для запуска рулетки
