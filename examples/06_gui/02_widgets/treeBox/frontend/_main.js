@@ -7,6 +7,6 @@ var t = new lx.TreeBox({
 	leaf: function(leaf) {
 		leaf->label.text( leaf.node.key );
 		leaf.createAddButton();
-		leaf.createDelButton();
+		leaf.createDropButton();
 	}
 }).border();
