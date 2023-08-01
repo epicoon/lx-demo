@@ -34,7 +34,7 @@ class HtmpViewBuilder {
 	 * Немного js-кода дял навигации по статье
 	 * */
 	private static function initJs($header) {
-		$headerL10n = (new Localizator(self::$contextModule->params->lang))->translate($header);
+		$headerL10n = (new Localizator(self::$contextModule->params->lang))->localizeKey($header);
 		if ($headerL10n) $header = $headerL10n;
 
 		//Устарело. пост-жс признан ерундой и искоренён. Решать задачу другими путями

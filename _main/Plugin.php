@@ -31,7 +31,7 @@ class Plugin extends \lx\Plugin {
 //			return \lx\DataObject::create($this->params->l10n);
 //		}
 //
-//		return (new \lx\demo\tools\l10n\Localizator($this->params->l10n['lang']))->translate($key);
+//		return (new \lx\demo\tools\l10n\Localizator($this->params->l10n['lang']))->localizeKey($key);
 //	}
 
 	/**

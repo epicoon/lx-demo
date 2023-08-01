@@ -10,7 +10,7 @@ class Localizator {
 		$this->_map = null;
 	}
 
-	public function translate($key) {
+	public function localizeKey($key) {
 		$map = $this->map();
 
 		if (array_key_exists($key, $map)) {
